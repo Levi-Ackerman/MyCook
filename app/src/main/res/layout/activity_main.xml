@@ -1,43 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/GridLayout1"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_light"
-    android:columnCount="4"
-    android:orientation="horizontal"
-    android:rowCount="4">
+    android:background="@android:color/holo_blue_light">
 
-    <ImageButton
-        android:id="@+id/ib_player"
-        android:layout_column="0"
-        android:layout_gravity="start"
-        android:layout_row="0"
-        android:scaleType="fitXY"
-        android:src="@drawable/play" />
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
 
-    <ImageButton
-        android:id="@+id/ib_mall"
-        android:layout_gravity="center"
-        android:scaleType="fitXY"
-        android:src="@drawable/mall" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <ImageButton
-        android:id="@+id/ib_yuecai"
-        android:layout_gravity="center"
-        android:scaleType="fitXY"
-        android:src="@drawable/mall" />
+            <ImageButton
+                android:id="@+id/ib_yuecai"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentTop="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/yuecai" />
 
-    <ImageButton
-        android:id="@+id/ib_xiangcai"
-        android:layout_gravity="center"
-        android:scaleType="fitXY"
-        android:src="@drawable/mall" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-    <ImageButton
-        android:id="@+id/ib_chuancai"
-        android:layout_gravity="center"
-        android:scaleType="fitXY"
-        android:src="@drawable/mall" />
+                <ImageButton
+                    android:id="@+id/ib_player"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_weight="1"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/play" />
 
-</GridLayout>
+                <ImageButton
+                    android:id="@+id/ib_mall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_weight="1"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/mall" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="2">
+
+                <ImageButton
+                    android:id="@+id/ib_xiangcai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_weight="1"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/xiangcai" />
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/ib_chuancai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:src="@drawable/chuancai" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+    <!--<ImageButton-->
+    <!--android:id="@+id/ib_player"-->
+    <!--android:src="@drawable/play"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content" />-->
+    <!--<ImageButton-->
+    <!--android:id="@+id/ib_mall"-->
+    <!--android:src="@drawable/mall"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content" />-->
+</LinearLayout>
+
+    <!--<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"--><!--android:id="@+id/GridLayout1"--><!--android:layout_width="match_parent"--><!--android:layout_height="match_parent"--><!--android:background="@android:color/holo_blue_light"--><!--android:columnCount="4"--><!--android:orientation="horizontal"--><!--android:rowCount="4">-->
+
+    <!--<ImageButton--><!--android:id="@+id/ib_player"--><!--android:layout_column="0"--><!--android:layout_gravity="start"--><!--android:layout_row="0"--><!--android:scaleType="fitXY"--><!--android:src="@drawable/play" />-->
+
+    <!--<ImageButton--><!--android:id="@+id/ib_mall"--><!--android:layout_gravity="center"--><!--android:scaleType="fitXY"--><!--android:src="@drawable/mall" />-->
+
+    <!--<ImageButton--><!--android:id="@+id/ib_yuecai"--><!--android:layout_gravity="center"--><!--android:scaleType="fitXY"--><!--android:src="@drawable/mall" />-->
+
+    <!--<ImageButton--><!--android:id="@+id/ib_xiangcai"--><!--android:layout_gravity="center"--><!--android:scaleType="fitXY"--><!--android:src="@drawable/mall" />-->
+
+    <!--<ImageButton--><!--android:id="@+id/ib_chuancai"--><!--android:layout_gravity="center"--><!--android:scaleType="fitXY"--><!--android:src="@drawable/mall" />-->
+
+    <!--</GridLayout>-->
