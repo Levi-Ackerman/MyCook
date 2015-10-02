@@ -17,18 +17,18 @@ import java.util.List;
 /**
  * Created by jsonlee on 10/1/15.
  */
-public class PlayerService extends Service
-{
+public class PlayerService extends Service {
     private static final File MUSIC_PATH = Environment
-        .getExternalStorageDirectory();// 找到music存放的路径。
+            .getExternalStorageDirectory();// 找到music存放的路径。
     public List<String> musicList;// 存放找到的所有mp3的绝对路径。
     public MediaPlayer player; // 定义多媒体对象
     public int songNum; // 当前播放的歌曲在List中的下标
     public String songName; // 当前播放的歌曲名
-    public PlayerService(){
+
+    public PlayerService() {
         musicList = new ArrayList<String>();
         player = new MediaPlayer();
-        File[] mp3s = MUSIC_PATH.listFiles(new FilenameFilter(){
+        File[] mp3s = MUSIC_PATH.listFiles(new FilenameFilter() {
 
             @Override
             public boolean accept(File dir, String filename) {
@@ -42,6 +42,7 @@ public class PlayerService extends Service
             }
         }
     }
+
     public void start() {
         try {
             player.reset(); //重置多媒体
@@ -60,10 +61,12 @@ public class PlayerService extends Service
             Log.v("MusicService", e.getMessage());
         }
     }
+
     public void next() {
         songNum = songNum == musicList.size() - 1 ? 0 : songNum + 1;
         start();
     }
+
     public void setPlayName(String dataSource) {
         File file = new File(dataSource);//假设为D:\\mm.mp3
         String name = file.getName();//name=mm.mp3
@@ -76,6 +79,7 @@ public class PlayerService extends Service
             player.stop();
         }
     }
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -84,14 +88,24 @@ public class PlayerService extends Service
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if(intent!=null){
-            if("init".equals(intent.getStringExtra("action"))){
-                Intent in =new Intent("music.list");
-                in.putStringArrayListExtra("music.list",(ArrayList<String>)musicList);
+        if (intent != null) {
+            if ("init".equals(intent.getStringExtra("action"))) {
+                Intent in = new Intent("music.list");
+                in.putStringArrayListExtra("music.list", (ArrayList<String>) musicList);
                 sendBroadcast(in);
+            } else if ("play".equals(intent.getStringExtra("action"))) {
+                songNum = intent.getIntExtra("position", -1);
+                if (songNum > -1) {
+                    start();
+                }
+            } else if ("stop".equals(intent.getStringExtra("action"))) {
+                stop();
             }
         }
         return super.onStartCommand(intent, flags, startId);
     }
-    enum State{Playing,Stopped,Reading,Stopping};
+
+    enum State {Playing, Stopped, Reading, Stopping}
+
+    ;
 }

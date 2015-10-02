@@ -5,13 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -22,8 +21,10 @@ import java.util.Map;
 /**
  * Created by jsonlee on 10/1/15.
  */
-public class PlayerActivity extends BaseActivity implements AdapterView.OnItemClickListener {
+public class PlayerActivity extends BaseActivity implements AdapterView.OnItemClickListener, View.OnClickListener {
     ListView listView;
+    Button btnPlay;
+    TextView tvName;
     BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -40,16 +41,20 @@ public class PlayerActivity extends BaseActivity implements AdapterView.OnItemCl
         setContentView(R.layout.activity_player);
         listView = (ListView) findViewById(R.id.lv_songs);
         listView.setOnItemClickListener(this);
+        btnPlay = (Button) findViewById(R.id.btn_play);
+        btnPlay.setOnClickListener(this);
+        tvName = (TextView) findViewById(R.id.tv_songname);
 
         IntentFilter filter = new IntentFilter("music.list");
         registerReceiver(receiver, filter);
-        startActionInService("init");
+        Intent in = getIntentToService("init");
+        startService(in);
     }
 
-    private void startActionInService(String action){
+    private Intent getIntentToService(String action){
         Intent in = new Intent(this, PlayerService.class);
         in.putExtra("action", action);
-        startService(in);
+        return in;
     }
 
     private void setListViewAdapter(List<String> musicList) {
@@ -70,6 +75,15 @@ public class PlayerActivity extends BaseActivity implements AdapterView.OnItemCl
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Map<String,String> map = (Map<String, String>) listView.getAdapter().getItem(position);
+        tvName.setText(map.get("fileName"));
+        Intent in = getIntentToService("play");
+        in.putExtra("position",position);
+        startService(in);
+    }
 
+    @Override
+    public void onClick(View v) {
+        startService(getIntentToService("stop"));
     }
 }
