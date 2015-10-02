@@ -1,5 +1,6 @@
 package lee.scut.edu.mycook;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -14,8 +15,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ibPlayer = (ImageButton) findViewById(R.id.ib_player);
-        ibPlayer.setOnClickListener(this);
+        findViewById(R.id.ib_player).setOnClickListener(this);
     }
 
     @Override
@@ -45,7 +45,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ib_player:
-                showToast("点击");
+                Intent intent = new Intent(this,PlayerActivity.class);
+                startActivity(intent);
                 break;
         }
     }
