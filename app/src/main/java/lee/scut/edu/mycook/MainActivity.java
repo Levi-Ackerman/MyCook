@@ -7,6 +7,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.SimpleAdapter;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     ImageButton ibPlayer;
@@ -16,6 +23,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         findViewById(R.id.ib_player).setOnClickListener(this);
+        findViewById(R.id.ib_yuecai).setOnClickListener(this);
     }
 
     @Override
@@ -45,8 +53,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ib_player:
-                Intent intent = new Intent(this,PlayerActivity.class);
-                startActivity(intent);
+                jumpToActivity(PlayerActivity.class);
+                break;
+            case R.id.ib_yuecai:
+                jumpToActivity(YuecaiActivity.class);
                 break;
         }
     }

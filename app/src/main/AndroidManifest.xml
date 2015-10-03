@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="lee.scut.edu.mycook">
+    package="lee.scut.edu.mycook" >
 
     <application
         android:name=".App"
@@ -8,11 +8,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,10 +21,14 @@
         </activity>
         <activity
             android:name=".PlayerActivity"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape" >
         </activity>
 
-        <service android:name=".PlayerService"></service>
+        <service android:name=".PlayerService" />
+
+        <activity android:name=".YuecaiActivity"
+            android:screenOrientation="landscape">
+        </activity>
     </application>
 
 </manifest>

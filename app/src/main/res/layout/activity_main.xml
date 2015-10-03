@@ -73,28 +73,4 @@
 
         </LinearLayout>
     </HorizontalScrollView>
-    <!--<ImageButton-->
-    <!--android:id="@+id/ib_player"-->
-    <!--android:src="@drawable/play"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content" />-->
-    <!--<ImageButton-->
-    <!--android:id="@+id/ib_mall"-->
-    <!--android:src="@drawable/mall"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content" />-->
 </LinearLayout>
-
-    <!--<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"--><!--android:id="@+id/GridLayout1"--><!--android:layout_width="match_parent"--><!--android:layout_height="match_parent"--><!--android:background="@android:color/holo_blue_light"--><!--android:columnCount="4"--><!--android:orientation="horizontal"--><!--android:rowCount="4">-->
-
-    <!--<ImageButton--><!--android:id="@+id/ib_player"--><!--android:layout_column="0"--><!--android:layout_gravity="start"--><!--android:layout_row="0"--><!--android:scaleType="fitXY"--><!--android:src="@drawable/play" />-->
-
-    <!--<ImageButton--><!--android:id="@+id/ib_mall"--><!--android:layout_gravity="center"--><!--android:scaleType="fitXY"--><!--android:src="@drawable/mall" />-->
-
-    <!--<ImageButton--><!--android:id="@+id/ib_yuecai"--><!--android:layout_gravity="center"--><!--android:scaleType="fitXY"--><!--android:src="@drawable/mall" />-->
-
-    <!--<ImageButton--><!--android:id="@+id/ib_xiangcai"--><!--android:layout_gravity="center"--><!--android:scaleType="fitXY"--><!--android:src="@drawable/mall" />-->
-
-    <!--<ImageButton--><!--android:id="@+id/ib_chuancai"--><!--android:layout_gravity="center"--><!--android:scaleType="fitXY"--><!--android:src="@drawable/mall" />-->
-
-    <!--</GridLayout>-->

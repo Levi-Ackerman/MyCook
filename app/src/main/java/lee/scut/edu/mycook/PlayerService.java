@@ -18,8 +18,6 @@ import java.util.List;
  * Created by jsonlee on 10/1/15.
  */
 public class PlayerService extends Service {
-    private static final File MUSIC_PATH = Environment
-            .getExternalStorageDirectory();// 找到music存放的路径。
     public List<String> musicList;// 存放找到的所有mp3的绝对路径。
     public MediaPlayer player; // 定义多媒体对象
     public int songNum; // 当前播放的歌曲在List中的下标
@@ -28,7 +26,7 @@ public class PlayerService extends Service {
     public PlayerService() {
         musicList = new ArrayList<String>();
         player = new MediaPlayer();
-        File[] mp3s = MUSIC_PATH.listFiles(new FilenameFilter() {
+        File[] mp3s = App.MUSIC_PATH.listFiles(new FilenameFilter() {
 
             @Override
             public boolean accept(File dir, String filename) {
