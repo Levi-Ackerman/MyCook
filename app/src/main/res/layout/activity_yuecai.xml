@@ -27,12 +27,16 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <VideoView
+                <ImageButton
                     android:id="@+id/vv_videoView"
-                    android:clickable="true"
                     android:background="@drawable/play_video"
                     android:layout_width="320dp"
                     android:layout_height="240dp" />
+                <TextView
+                    android:id="@+id/tv_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"/>
             </LinearLayout>
         </ScrollView>
 
