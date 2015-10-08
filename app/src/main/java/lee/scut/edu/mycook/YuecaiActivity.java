@@ -100,7 +100,7 @@ public class YuecaiActivity extends BaseCaiActivity implements View.OnClickListe
                 "\t2、用一个碗装起来，放到微波炉加热30秒钟，使它们的香味飘出来后，放一点点糖，调入适量鲜贝露调味汁/美极调味汁，滴一两滴香油调匀。\n" +
                 "\t3、鸡的处理：在北京市区里是禁止活家禽买卖的，所以买回来的鸡是已经杀好并做了拔毛开膛等初步处理了的，只需将鸡洗干净，切去鸡爪甲即可。\n" +
                 "\t4、在锅里面加入水、大料、八角、大葱段、姜片、蒜瓣、料酒。\n" +
-                "\t5、水烧开就把鸡放进去，最好水没过一整只鸡。",App.MUSIC_PATH+"/ms720.wmv");
+                "\t5、水烧开就把鸡放进去，最好水没过一整只鸡。",App.MUSIC_PATH+"/testVideo.flv");
         tvContent.setText(currentFood.content);
     }
 
