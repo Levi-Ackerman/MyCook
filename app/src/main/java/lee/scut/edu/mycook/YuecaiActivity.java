@@ -83,8 +83,8 @@ public class YuecaiActivity extends BaseCaiActivity implements View.OnClickListe
             data.add(map);
         }
         adapter = new SimpleAdapter(this, data,
-                android.R.layout.simple_list_item_1,
-                new String[]{"fileName"}, new int[]{android.R.id.text1});
+                R.layout.item_text,
+                new String[]{"fileName"}, new int[]{R.id.tv_item});
         listView.setAdapter(adapter);
     }
 
@@ -95,12 +95,12 @@ public class YuecaiActivity extends BaseCaiActivity implements View.OnClickListe
         foodDetail.setVisibility(View.VISIBLE);
         saveInt(App.FOOD_LIST_POS, position);
 
-        currentFood = new Food("白切鸡的具体做法如下:\n白切鸡的佐餐调料，各地风味除少数地区就地取材用特殊原料外，种类可以千变万化，主要是调料配制的不同而形成了独特的口味。调料组合得当，不仅具有特殊的香气，而且可获得意想不到的异味，使白切鸡更觉脍炙人口。\n" +
-                "1、把蒜切成末，香葱、香菜洗净切成末。\n" +
-                "2、用一个碗装起来，放到微波炉加热30秒钟，使它们的香味飘出来后，放一点点糖，调入适量鲜贝露调味汁/美极调味汁，滴一两滴香油调匀。\n" +
-                "3、鸡的处理：在北京市区里是禁止活家禽买卖的，所以买回来的鸡是已经杀好并做了拔毛开膛等初步处理了的，只需将鸡洗干净，切去鸡爪甲即可。\n" +
-                "4、在锅里面加入水、大料、八角、大葱段、姜片、蒜瓣、料酒。\n" +
-                "5、水烧开就把鸡放进去，最好水没过一整只鸡。",App.MUSIC_PATH+"/testVideo.flv");
+        currentFood = new Food("白切鸡的具体做法如下:\n" +
+                "\t1、把蒜切成末，香葱、香菜洗净切成末。\n" +
+                "\t2、用一个碗装起来，放到微波炉加热30秒钟，使它们的香味飘出来后，放一点点糖，调入适量鲜贝露调味汁/美极调味汁，滴一两滴香油调匀。\n" +
+                "\t3、鸡的处理：在北京市区里是禁止活家禽买卖的，所以买回来的鸡是已经杀好并做了拔毛开膛等初步处理了的，只需将鸡洗干净，切去鸡爪甲即可。\n" +
+                "\t4、在锅里面加入水、大料、八角、大葱段、姜片、蒜瓣、料酒。\n" +
+                "\t5、水烧开就把鸡放进去，最好水没过一整只鸡。",App.MUSIC_PATH+"/ms720.wmv");
         tvContent.setText(currentFood.content);
     }
 
