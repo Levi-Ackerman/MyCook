@@ -6,6 +6,11 @@ import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.Toast;
 
+import net.tsz.afinal.FinalHttp;
+import net.tsz.afinal.http.AjaxParams;
+
+import java.util.List;
+
 /**
  * Created by jsonlee on 10/1/15.
  */
@@ -29,4 +34,13 @@ public abstract class BaseActivity extends ActionBarActivity {
     protected void saveInt(String key,int value){
         getPreferences().edit().putInt(key,value).commit();
     }
+    static FinalHttp http;
+    public static FinalHttp getHttp() {
+        if(http==null)
+            http = new FinalHttp();
+        return http;
+    }
+//    private String getJsonFromHttp(){
+//        return getHttp().getSync()
+//    }
 }
