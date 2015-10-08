@@ -12,6 +12,7 @@
 
         <TextView
             android:id="@+id/tv_songname"
+            android:textSize="@dimen/text_size_text_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -39,6 +40,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:layout_gravity="center"
+            android:textSize="@dimen/text_size_text_title"
             android:text="播放列表" />
 
         <ListView
