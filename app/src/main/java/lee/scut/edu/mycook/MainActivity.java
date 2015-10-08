@@ -1,5 +1,7 @@
 package lee.scut.edu.mycook;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +17,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
         findViewById(R.id.ib_player).setOnClickListener(this);
         findViewById(R.id.ib_caixi).setOnClickListener(this);
+        findViewById(R.id.ib_mall).setOnClickListener(this);
 //        getItem("home", "test.php","1", Item.class, new OnJsonReturnListener<Item>() {
 //            @Override
 //            public void onJsonReturn(Item result) {
@@ -55,6 +58,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.ib_caixi:
                 jumpToActivity(CaiXiActivity.class);
                 break;
+            case R.id.ib_mall:
+                Intent in = new Intent(Intent.ACTION_VIEW);
+                in.setData(Uri.parse("http://www.taobao.com"));
+                startActivity(in);
         }
     }
 }
