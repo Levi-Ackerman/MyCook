@@ -24,6 +24,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
         findViewById(R.id.ib_player).setOnClickListener(this);
         findViewById(R.id.ib_yuecai).setOnClickListener(this);
+        getItem("home", "test.php","1", Item.class, new OnJsonReturnListener<Item>() {
+            @Override
+            public void onJsonReturn(Item result) {
+                System.out.println(result.name + "");
+            }
+        });
     }
 
     @Override

@@ -1,46 +1,98 @@
 package lee.scut.edu.mycook;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import net.tsz.afinal.FinalHttp;
+import net.tsz.afinal.http.AjaxCallBack;
 import net.tsz.afinal.http.AjaxParams;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by jsonlee on 10/1/15.
  */
 public abstract class BaseActivity extends ActionBarActivity {
-    protected void showToast(String text){
+    Gson gson = new Gson();
+    Handler handler = new Handler();
+//    final String url = "http://125.216.243.195:8080/MyCook";
+    final String url = "http://www.lizhengxian.com";
+    protected void showToast(String text) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
+
     protected void jumpToActivity(Class clazz) {
-        Intent intent = new Intent(this,clazz);
+        Intent intent = new Intent(this, clazz);
         startActivity(intent);
     }
+
     private static SharedPreferences preferences;
-    private SharedPreferences getPreferences(){
-        if(preferences == null)
-            preferences = getSharedPreferences("app",MODE_PRIVATE);
+
+    private SharedPreferences getPreferences() {
+        if (preferences == null)
+            preferences = getSharedPreferences("app", MODE_PRIVATE);
         return preferences;
     }
-    protected int loadInt(String key,int defaultValue){
-        return getPreferences().getInt(key,defaultValue);
+
+    protected int loadInt(String key, int defaultValue) {
+        return getPreferences().getInt(key, defaultValue);
     }
-    protected void saveInt(String key,int value){
-        getPreferences().edit().putInt(key,value).commit();
+
+    protected void saveInt(String key, int value) {
+        getPreferences().edit().putInt(key, value).commit();
     }
+
     static FinalHttp http;
+
     public static FinalHttp getHttp() {
-        if(http==null)
+        if (http == null)
             http = new FinalHttp();
         return http;
     }
-//    private String getJsonFromHttp(){
-//        return getHttp().getSync()
-//    }
+
+    protected void getListFromHttp(final String home, final String type, final OnJsonReturnListener listener) {
+        final ProgressDialog dlg = new ProgressDialog(this);
+        dlg.setTitle("正在加载，请稍候");
+        dlg.show();
+        final Thread thread = new Thread() {
+            @Override
+            public void run() {
+                String jsonString = getHttp().getSync(url + "/" + home+"/"+type).toString();
+                Type listType = new TypeToken<ArrayList<Item>>() {
+                }.getType();
+                List<Item> items = gson.fromJson(jsonString, listType);
+                dlg.cancel();
+                listener.onJsonReturn(items);
+            }
+        };
+        thread.start();
+    }
+
+    protected void getItem(final String home,final String type,final String id, final Class clazz,final OnJsonReturnListener listener) {
+        final ProgressDialog dlg = new ProgressDialog(this);
+        dlg.setTitle("正在加载，请稍候");
+        dlg.show();
+        final Thread thread = new Thread() {
+            @Override
+            public void run() {
+                AjaxParams params = new AjaxParams("id", id);
+                String jsonString = getHttp().getSync(url + "/" + home+"/"+type, params).toString();
+                Object item = gson.fromJson(jsonString, clazz);
+                dlg.cancel();
+                listener.onJsonReturn(item);
+            }
+        };
+        thread.start();
+    }
 }

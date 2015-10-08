@@ -103,21 +103,11 @@ public class YuecaiActivity extends BaseCaiActivity implements View.OnClickListe
     }
 
     private void playVedio(){
-        Uri uri = Uri.parse("http://124.232.154.180/youku/697AEA70868398343898D7508E/03000201004CAF459AA42A038063F37A4AE09C-6B0C-984A-B26D-4CF474D81854.flv?&start=0");
+        Uri uri = Uri.parse("http://www.lizhengxian.com/testVideo.flv");
 //        Uri uri = Uri.fromFile(new File(currentFood.videoUrl));
 //调用系统自带的播放器
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setDataAndType(uri, "video/mp4");
         startActivity(intent);
-//        File file=new File("/sdcard/ms720.wmv");
-//        if(file.exists()){
-//            //VideoView与MediaController进行关联
-//            videoView.setVideoPath(file.getAbsolutePath());
-//            videoView.setMediaController(mediaco);
-//            mediaco.setMediaPlayer(videoView);
-//            //让VideiView获取焦点
-//            videoView.requestFocus();
-//            videoView.start();
-//        }
     }
 }
