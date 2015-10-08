@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <ImageButton
-                    android:id="@+id/vv_videoView"
+                    android:id="@+id/ib_videoView"
                     android:background="@drawable/play_video"
                     android:layout_width="320dp"
                     android:layout_height="240dp" />
@@ -38,6 +38,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textMultiLine"/>
+                <!--<VideoView-->
+                    <!--android:id="@+id/vv_videoView"-->
+                    <!--android:layout_width="320dp"-->
+                    <!--android:layout_height="240dp" />-->
             </LinearLayout>
         </ScrollView>
 

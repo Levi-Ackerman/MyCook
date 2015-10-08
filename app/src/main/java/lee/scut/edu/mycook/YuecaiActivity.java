@@ -3,12 +3,12 @@ package lee.scut.edu.mycook;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.MediaController;
 import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -26,7 +26,7 @@ public class YuecaiActivity extends BaseCaiActivity implements View.OnClickListe
     TextView tvTilte;
     ListView listView;
     ListAdapter adapter ;
-    ImageButton videoView;
+    ImageButton ib_videoView;
     ScrollView foodDetail;
     TextView tvContent;
     Food currentFood;
@@ -55,8 +55,8 @@ public class YuecaiActivity extends BaseCaiActivity implements View.OnClickListe
         listView.setOnItemClickListener(this);
         tvTilte = (TextView)findViewById(R.id.tv_food_title);
         tvContent = (TextView)findViewById(R.id.tv_content);
-        videoView = (ImageButton)findViewById(R.id.vv_videoView);
-        videoView.setOnClickListener(this);
+        ib_videoView = (ImageButton)findViewById(R.id.ib_videoView);
+        ib_videoView.setOnClickListener(this);
         foodDetail = (ScrollView)findViewById(R.id.food_detail);
         initFoodList();
         setListViewAdapter();
@@ -64,6 +64,8 @@ public class YuecaiActivity extends BaseCaiActivity implements View.OnClickListe
         if(clickItem > -1){
             listView.performItemClick(null,clickItem,0);
         }
+
+
     }
 
     private void initFoodList() {
@@ -98,16 +100,22 @@ public class YuecaiActivity extends BaseCaiActivity implements View.OnClickListe
                 "2、用一个碗装起来，放到微波炉加热30秒钟，使它们的香味飘出来后，放一点点糖，调入适量鲜贝露调味汁/美极调味汁，滴一两滴香油调匀。\n" +
                 "3、鸡的处理：在北京市区里是禁止活家禽买卖的，所以买回来的鸡是已经杀好并做了拔毛开膛等初步处理了的，只需将鸡洗干净，切去鸡爪甲即可。\n" +
                 "4、在锅里面加入水、大料、八角、大葱段、姜片、蒜瓣、料酒。\n" +
-                "5、水烧开就把鸡放进去，最好水没过一整只鸡。",App.MUSIC_PATH+"/ms720.wmv");
+                "5、水烧开就把鸡放进去，最好水没过一整只鸡。",App.MUSIC_PATH+"/testVideo.flv");
         tvContent.setText(currentFood.content);
     }
 
     private void playVedio(){
-        Uri uri = Uri.parse("http://www.lizhengxian.com/testVideo.flv");
-//        Uri uri = Uri.fromFile(new File(currentFood.videoUrl));
+//        Uri uri = Uri.parse("http://www.lizhengxian.com/test_video.flvv");
+//        Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.test_video);
+        Uri uri = Uri.fromFile(new File(currentFood.videoUrl));
 //调用系统自带的播放器
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setDataAndType(uri, "video/mp4");
         startActivity(intent);
+        // Create media controller，组件可以控制视频的播放，暂停，回复，seek等操作，不需要你实现
+//        MediaController mMediaController = new MediaController(this);
+//        vv.setMediaController(mMediaController);
+//        vv.setVideoURI(mUri);
+//        vv.start();
     }
 }

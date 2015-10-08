@@ -3,13 +3,11 @@ package lee.scut.edu.mycook;
 import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.os.Environment;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.io.File;
-import java.io.FileFilter;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,20 +24,19 @@ public class PlayerService extends Service {
     public PlayerService() {
         musicList = new ArrayList<String>();
         player = new MediaPlayer();
-//        File[] mp3s = App.MUSIC_PATH.listFiles(new FilenameFilter() {
-//
-//            @Override
-//            public boolean accept(File dir, String filename) {
-//                return filename.endsWith(".mp3");
-//            }
-//        });
-//
-//        if (mp3s.length > 0) {
-//            for (File file : mp3s) {
-//                musicList.add(file.getAbsolutePath());
-//            }
-//        }
-        musicList.add("http://www.lizhengxian.com/test_A.mp3");
+        File[] mp3s = App.MUSIC_PATH.listFiles(new FilenameFilter() {
+
+            @Override
+            public boolean accept(File dir, String filename) {
+                return filename.endsWith(".mp3");
+            }
+        });
+
+        if (mp3s.length > 0) {
+            for (File file : mp3s) {
+                musicList.add(file.getAbsolutePath());
+            }
+        }
     }
 
     public void start() {
@@ -50,14 +47,14 @@ public class PlayerService extends Service {
             player.setDataSource(dataSource);//为多媒体对象设置播放路径
             player.prepare();//准备播放
             player.start();//开始播放
-            //setOnCompletionListener 当当前多媒体对象播放完成时发生的事件
+//            setOnCompletionListener 当当前多媒体对象播放完成时发生的事件
             player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 public void onCompletion(MediaPlayer arg0) {
                     next();//如果当前歌曲播放完毕,自动播放下一首.
                 }
             });
         } catch (Exception e) {
-            Log.v("MusicService", e.getMessage());
+//            Log.v("MusicService", e.getMessage());
         }
     }
 
