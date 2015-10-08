@@ -26,22 +26,20 @@ public class PlayerService extends Service {
     public PlayerService() {
         musicList = new ArrayList<String>();
         player = new MediaPlayer();
-        File[] mp3s = App.MUSIC_PATH.listFiles(new FilenameFilter() {
-
-            @Override
-            public boolean accept(File dir, String filename) {
-                return filename.endsWith(".mp3");
-            }
-        });
-
-        if (mp3s.length > 0) {
-            for (File file : mp3s) {
-                musicList.add(file.getAbsolutePath());
-            }
-        }
-//        musicList.add("http://yinyueyun.baidu.com/data/cloud/downloadsongfile?songIds=2621424&rate=128&format=mp3");
-//        musicList.add("http://nbct01.baidupcs.com/file/0360e5029369fd6ccd9689b00bd7f217?bkt=p2-nj-542&fid=289262153-250528-934241834319361&time=1444097052&sign=FDTAXGERLBH-DCb740ccc5511e5e8fedcff06b081203-TmscotPcIqsRTDsr%2FI1%2BhulQi1g%3D&to=nbhb&fm=Nin,B,G,e&sta_dx=5&sta_cs=0&sta_ft=mp3&sta_ct=0&fm2=Ningbo,B,G,e&newver=1&newfm=1&secfm=1&flow_ver=3&pkey=14000360e5029369fd6ccd9689b00bd7f217425ba61700000050dfd4&sl=69206094&expires=8h&rt=pr&r=106025699&mlogid=6457336285184968404&vuk=289262153&vbdid=2031428716&fin=test_B.mp3&fn=test_B.mp3&slt=pm&uta=0&rtype=1&iv=0&isw=0&dp-logid=6457336285184968404&dp-callid=0.1.1");
-
+//        File[] mp3s = App.MUSIC_PATH.listFiles(new FilenameFilter() {
+//
+//            @Override
+//            public boolean accept(File dir, String filename) {
+//                return filename.endsWith(".mp3");
+//            }
+//        });
+//
+//        if (mp3s.length > 0) {
+//            for (File file : mp3s) {
+//                musicList.add(file.getAbsolutePath());
+//            }
+//        }
+        musicList.add("http://www.lizhengxian.com/test_A.mp3");
     }
 
     public void start() {
@@ -69,8 +67,10 @@ public class PlayerService extends Service {
     }
 
     public void setPlayName(String dataSource) {
-        File file = new File(dataSource);//假设为D:\\mm.mp3
-        String name = file.getName();//name=mm.mp3
+        String[] ss = dataSource.split("/");
+//        File file = new File(dataSource);//假设为D:\\mm.mp3
+//        String name = file.getName();//name=mm.mp3
+        String name = ss[ss.length-1];
         int index = name.lastIndexOf(".");//找到最后一个.
         songName = name.substring(0, index);//截取为mm
     }
