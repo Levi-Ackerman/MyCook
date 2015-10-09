@@ -17,6 +17,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_margin="70dp"
+            android:textColor="@android:color/black"
             android:text="点击播放列表任一歌曲开始播放"
             android:textSize="@dimen/text_size_text_content" />
 
@@ -42,6 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="10dp"
+            android:textColor="@android:color/black"
             android:text="播放列表"
             android:textSize="@dimen/text_size_text_title" />
 
