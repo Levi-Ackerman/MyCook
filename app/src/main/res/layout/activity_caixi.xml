@@ -10,22 +10,20 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         android:src="@drawable/yuecai" />
 
     <ImageButton
         android:layout_width="0dp"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         android:layout_height="match_parent"
-
         android:layout_weight="1"
         android:src="@drawable/chuancai" />
 
     <ImageButton
         android:layout_width="0dp"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         android:layout_height="match_parent"
-
         android:layout_weight="1"
         android:src="@drawable/xiangcai" />
 

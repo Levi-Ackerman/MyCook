@@ -7,8 +7,8 @@
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="6"
-        android:background="@android:color/white">
+        android:background="@drawable/sky"
+        android:layout_weight="6">
         <TextView
             android:id="@+id/tv_food_title"
             android:layout_width="match_parent"

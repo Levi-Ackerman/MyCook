@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         android:src="@drawable/caixi" />
 
 
@@ -23,7 +23,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true"
         android:layout_weight="1"
-        android:scaleType="fitXY"
+        android:scaleType="fitCenter"
+        android:background="#ebeceb"
         android:src="@drawable/play" />
 
     <ImageButton
@@ -33,6 +34,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true"
         android:layout_weight="1"
-        android:scaleType="fitXY"
+        android:scaleType="fitCenter"
+        android:background="#fff"
         android:src="@drawable/mall" />
 </LinearLayout>
