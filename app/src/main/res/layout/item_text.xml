@@ -6,6 +6,7 @@
         android:padding="10dp"
         android:id="@+id/tv_item"
         android:textSize="@dimen/text_size_text_content"
+        android:textColor="@android:color/black"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>
