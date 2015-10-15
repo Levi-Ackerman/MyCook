@@ -2,29 +2,85 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_light"
     android:orientation="horizontal">
-
-    <ImageButton
-        android:id="@+id/ib_yuecai"
+    <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:scaleType="centerCrop"
-        android:src="@drawable/yuecai" />
+        android:layout_weight="6"
+        android:background="@android:color/white">
 
-    <ImageButton
-        android:layout_width="0dp"
-        android:scaleType="centerCrop"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:src="@drawable/chuancai" />
+        <RelativeLayout
+            android:id="@+id/container_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <ImageButton
+            <EditText
+                android:id="@+id/et_search_caipu"
+                android:layout_width="match_parent"
+                android:layout_toLeftOf="@+id/btn_search_caipu"
+                android:layout_height="wrap_content"
+                android:hint=" 按菜谱名搜索"
+                android:textSize="@dimen/text_size_text_content" />
+
+            <Button
+                android:layout_alignParentRight="true"
+                android:id="@+id/btn_search_caipu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="搜索"
+                android:textSize="@dimen/text_size_text_content" />
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_below="@id/container_search"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <include
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                layout="@layout/view_show_container"
+                android:id="@+id/container_pop"/>
+            <include
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                layout="@layout/view_show_container"
+                android:id="@+id/container_recommand"/>
+            <include
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                layout="@layout/view_show_container"
+                android:id="@+id/container_history"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
         android:layout_width="0dp"
-        android:scaleType="centerCrop"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:src="@drawable/xiangcai" />
+        android:layout_weight="3"
+        android:background="#ffe"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:text="菜品列表"
+            android:textStyle="bold" />
+
+        <ListView
+            android:id="@+id/lv_foods"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent">
+
+        </ListView>
+    </LinearLayout>
 
 </LinearLayout>
