@@ -4,6 +4,7 @@
     android:layout_marginRight="10dp"
     android:layout_height="match_parent">
     <ImageView
+        android:id="@+id/ib_foodImg"
         android:layout_above="@+id/tv_food_simple"
         android:layout_marginBottom="8dp"
         android:layout_width="match_parent"

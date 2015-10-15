@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import net.tsz.afinal.FinalBitmap;
 import net.tsz.afinal.FinalHttp;
 import net.tsz.afinal.http.AjaxCallBack;
 import net.tsz.afinal.http.AjaxParams;
@@ -60,7 +61,9 @@ public abstract class BaseActivity extends ActionBarActivity {
             http = new FinalHttp();
         return http;
     }
-
+    public FinalBitmap getBitmap(){
+        return FinalBitmap.create(this);
+    }
     protected void getListFromHttp(final String home, final String type, final OnJsonReturnListener listener) {
         final ProgressDialog dlg = new ProgressDialog(this);
         dlg.setTitle("正在加载，请稍候");

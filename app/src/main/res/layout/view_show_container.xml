@@ -9,22 +9,26 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:textSize="@dimen/abc_text_size_title_material_toolbar"
+        android:textColor="@android:color/black"
         android:text="猜你喜欢" />
 
-    <TextView
-        android:id="@+id/tv_more"
+    <Button
+        android:background="@android:color/transparent"
+        android:id="@+id/btn_more"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:text="更多>>" />
 
     <LinearLayout
+        android:id="@+id/lay_show"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/tv_kind"
         android:orientation="horizontal">
 
         <include
+            android:id="@+id/vw_food0"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             layout="@layout/view_food"
@@ -32,24 +36,28 @@
             android:layout_height="match_parent"
             android:layout_weight="1" />
         <include
+            android:id="@+id/vw_food1"
             android:layout_marginRight="10dp"
             layout="@layout/view_food"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
         <include
+            android:id="@+id/vw_food2"
             android:layout_marginRight="10dp"
             layout="@layout/view_food"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
         <include
+            android:id="@+id/vw_food3"
             layout="@layout/view_food"
             android:layout_marginRight="10dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
         <include
+            android:id="@+id/vw_food4"
             layout="@layout/view_food"
             android:layout_marginRight="10dp"
             android:layout_width="0dp"
