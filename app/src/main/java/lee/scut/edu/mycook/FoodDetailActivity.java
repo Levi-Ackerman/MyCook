@@ -19,10 +19,10 @@ import java.util.Map;
 
 public class FoodDetailActivity extends BaseCaiActivity implements View.OnClickListener {
 
-    List<String> foodList = new ArrayList<>();
+    List<FoodComent> foodComents = new ArrayList<>();
     TextView tvTilte;
     ListView listView;
-    ListAdapter adapter ;
+    ListAdapter adapter;
     ImageButton videoView;
     ScrollView foodDetail;
     TextView tvContent;
@@ -33,7 +33,23 @@ public class FoodDetailActivity extends BaseCaiActivity implements View.OnClickL
         playVedio();
     }
 
-    class Food{
+    class FoodComent {
+        int grade; //打分
+        boolean done; //做过
+        String userName;
+        String content;
+        String time;
+
+        public FoodComent(int grade, boolean done, String userName, String content, String time) {
+            this.grade = grade;
+            this.done = done;
+            this.userName = userName;
+            this.content = content;
+            this.time = time;
+        }
+    }
+
+    class Food {
         String content;
 
         String videoUrl;
@@ -48,44 +64,47 @@ public class FoodDetailActivity extends BaseCaiActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_detail);
-        listView = (ListView)findViewById(R.id.lv_foods);
+        listView = (ListView) findViewById(R.id.lv_foods);
         listView.setOnItemClickListener(this);
-        tvTilte = (TextView)findViewById(R.id.tv_food_title);
-        tvContent = (TextView)findViewById(R.id.tv_content);
-        videoView = (ImageButton)findViewById(R.id.vv_videoView);
+        tvTilte = (TextView) findViewById(R.id.tv_food_title);
+        tvContent = (TextView) findViewById(R.id.tv_content);
+        videoView = (ImageButton) findViewById(R.id.vv_videoView);
         videoView.setOnClickListener(this);
-        foodDetail = (ScrollView)findViewById(R.id.food_detail);
-        initFoodList();
+        foodDetail = (ScrollView) findViewById(R.id.food_detail);
+        initCommentList();
         setListViewAdapter();
-        int clickItem = loadInt(App.FOOD_LIST_POS,-1);
-        if(clickItem > -1){
-            listView.performItemClick(null,clickItem,0);
+        int clickItem = loadInt(App.FOOD_LIST_POS, -1);
+        if (clickItem > -1) {
+            listView.performItemClick(null, clickItem, 0);
         }
     }
 
-    private void initFoodList() {
-        foodList.clear();
-        foodList.add("白切鸡");
-        foodList.add("隆江猪脚饭");
-        foodList.add("猪肉卷");
+    private void initCommentList() {
+        foodComents.clear();
+        FoodComent com = new FoodComent(3, true, "吃货是我", "生抽代替老抽，效果更好的", "2015.10.10 14:32");
+        foodComents.add(com);
     }
 
     private void setListViewAdapter() {
         List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
-        for (String path : foodList) {
+        for (FoodComent coment : foodComents) {
             Map<String, Object> map = new HashMap<String, Object>();
-            map.put("fileName", path);
+            map.put("grade", coment.grade + "分");
+            map.put("done", coment.done ? "做过" : "  ");
+            map.put("userName", coment.userName);
+            map.put("content", coment.content);
+            map.put("time", coment.time);
             data.add(map);
         }
         adapter = new SimpleAdapter(this, data,
-                android.R.layout.simple_list_item_1,
-                new String[]{"fileName"}, new int[]{android.R.id.text1});
+                R.layout.item_food_coment,
+                new String[]{"grade", "done", "userName", "content", "time"}, new int[]{R.id.coment_grade, R.id.coment_done, R.id.coment_userName, R.id.coment_content, R.id.coment_datetime});
         listView.setAdapter(adapter);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Map<String,String> map = (Map<String, String>) listView.getAdapter().getItem(position);
+        Map<String, String> map = (Map<String, String>) listView.getAdapter().getItem(position);
         tvTilte.setText(map.get("fileName"));
         foodDetail.setVisibility(View.VISIBLE);
         saveInt(App.FOOD_LIST_POS, position);
@@ -99,7 +118,7 @@ public class FoodDetailActivity extends BaseCaiActivity implements View.OnClickL
         tvContent.setText(currentFood.content);
     }
 
-    private void playVedio(){
+    private void playVedio() {
         Uri uri = Uri.parse("http://www.lizhengxian.com/testVideo.flv");
 //        Uri uri = Uri.fromFile(new File(currentFood.videoUrl));
 //调用系统自带的播放器

@@ -101,7 +101,7 @@ public class FoodListActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        jumpToActivity(FoodDetailActivity.class);
     }
 
     List<String> foodList = new ArrayList<>();
