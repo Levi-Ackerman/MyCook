@@ -30,10 +30,10 @@
 
         <service android:name=".PlayerService" />
 
-        <activity android:name=".YuecaiActivity"
+        <activity android:name=".FoodDetailActivity"
             android:screenOrientation="landscape">
         </activity>
-        <activity android:name=".CaiXiActivity"
+        <activity android:name=".FoodListActivity"
             android:screenOrientation="landscape"/>
         <activity android:name=".SongCategoryActivity"
             android:screenOrientation="landscape"/>

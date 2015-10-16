@@ -3,7 +3,6 @@ package lee.scut.edu.mycook;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
@@ -12,15 +11,13 @@ import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.VideoView;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class YuecaiActivity extends BaseCaiActivity implements View.OnClickListener {
+public class FoodDetailActivity extends BaseCaiActivity implements View.OnClickListener {
 
     List<String> foodList = new ArrayList<>();
     TextView tvTilte;
@@ -50,7 +47,7 @@ public class YuecaiActivity extends BaseCaiActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_yuecai);
+        setContentView(R.layout.activity_food_detail);
         listView = (ListView)findViewById(R.id.lv_foods);
         listView.setOnItemClickListener(this);
         tvTilte = (TextView)findViewById(R.id.tv_food_title);

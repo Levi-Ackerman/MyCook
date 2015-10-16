@@ -67,7 +67,7 @@ public class PlayerActivity extends BaseActivity implements AdapterView.OnItemCl
             data.add(map);
         }
         SimpleAdapter adapter = new SimpleAdapter(this, data,
-                R.layout.item_text,
+                R.layout.item_food_name_text,
                 new String[]{"fileName"}, new int[]{R.id.tv_item});
         listView.setAdapter(adapter);
 

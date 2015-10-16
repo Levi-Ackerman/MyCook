@@ -56,7 +56,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 jumpToActivity(SongCategoryActivity.class);
                 break;
             case R.id.ib_caixi:
-                jumpToActivity(CaiXiActivity.class);
+                jumpToActivity(FoodListActivity.class);
                 break;
             case R.id.ib_mall:
                 Intent in = new Intent(Intent.ACTION_VIEW);
