@@ -6,9 +6,9 @@ package lee.scut.edu.mycook.entity.FoodDetails;
 public class FoodComent {
     public int grade; //打分
     public boolean done; //做过
-    public String userName;
-    public String content;
-    public String time;
+    public String userName; //评论用户名
+    public String content; //评论内容
+    public String time; //评论时间
 
     public FoodComent(int grade, boolean done, String userName, String content, String time) {
         this.grade = grade;

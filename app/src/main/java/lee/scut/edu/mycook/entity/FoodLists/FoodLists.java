@@ -7,8 +7,8 @@ import java.util.List;
  * 食物列表，第二层菜单需要的数据
  */
 public class FoodLists {
-    public List<FoodListItem> allFoods;
-    public List<FoodRecommend> popFoods;
-    public List<FoodRecommend> recommendFood;
-    public List<FoodRecommend> historyFood;
+    public List<FoodListItem> allFoods;     //全部菜谱,右边列表
+    public List<FoodRecommend> popFoods;    //热门菜谱
+    public List<FoodRecommend> recommendFood;//猜你喜欢
+    public List<FoodRecommend> historyFood;  //历史记录
 }
