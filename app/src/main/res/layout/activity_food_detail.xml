@@ -25,7 +25,8 @@
                     android:id="@+id/vv_videoView"
                     android:layout_width="320dp"
                     android:layout_height="240dp"
-                    android:background="@drawable/baiqieji" />
+                    android:scaleType="fitStart"
+                    android:src="@drawable/baiqieji" />
 
                 <ImageView
                     android:layout_width="80dp"
@@ -63,11 +64,13 @@
                     android:orientation="horizontal">
 
                     <CheckBox
+                        android:id="@+id/cb_favorite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="收藏" />
 
                     <CheckBox
+                        android:id="@+id/cb_up"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="点赞" />
@@ -82,7 +85,7 @@
                 android:padding="3dp"
                 android:textStyle="bold"
                 android:text="食材清单" />
-            <ListView
+            <lee.scut.edu.mycook.view.ResizeListView
                 android:id="@+id/lv_materal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -95,7 +98,7 @@
                 android:padding="3dp"
                 android:textStyle="bold"
                 android:text="文字教程" />
-            <ListView
+            <lee.scut.edu.mycook.view.ResizeListView
                 android:id="@+id/lv_steps"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

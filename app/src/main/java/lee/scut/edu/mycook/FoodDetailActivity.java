@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -21,22 +23,31 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lee.scut.edu.mycook.entity.FoodDetails.Food;
 import lee.scut.edu.mycook.entity.FoodDetails.FoodComent;
+import lee.scut.edu.mycook.entity.FoodDetails.FoodMaterial;
+import lee.scut.edu.mycook.entity.FoodDetails.FoodStep;
+import lee.scut.edu.mycook.view.ResizeListView;
 
 public class FoodDetailActivity extends BaseActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener, CompoundButton.OnCheckedChangeListener {
 
-    List<FoodComent> foodComents = new ArrayList<>();
     TextView tvTilte;
     ListView lv_comments;
-    ListView lv_materials;
-    ListView lv_steps;
+    ResizeListView lv_materials;
+    ResizeListView lv_steps;
+    ListAdapter materialListAdapter;
+    ListAdapter stepListAdapter;
     ListAdapter commentListAdapter;
     ArrayAdapter<CharSequence> gradeArrayAdapter;
     ImageButton videoView;
     TextView tvContent;
     Spinner spinner;
-    CheckBox cb_done;
-    Button btn_coment;
+    CheckBox cbDone;
+    CheckBox cbFavorite;
+    CheckBox cbUp;
+    Button btn_comment;
+
+    Food food;
 
     @Override
     public void onClick(View v) {
@@ -55,9 +66,8 @@ public class FoodDetailActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        showToast(isChecked+"");
+        showToast(isChecked + "");
     }
-
 
 
     @Override
@@ -65,55 +75,111 @@ public class FoodDetailActivity extends BaseActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_detail);
         lv_comments = (ListView) findViewById(R.id.lv_foods);
+        lv_materials = (ResizeListView) findViewById(R.id.lv_materal);
+        lv_steps = (ResizeListView) findViewById(R.id.lv_steps);
         tvTilte = (TextView) findViewById(R.id.tv_food_title);
         tvContent = (TextView) findViewById(R.id.tv_content);
         videoView = (ImageButton) findViewById(R.id.vv_videoView);
         videoView.setOnClickListener(this);
-        spinner = (Spinner)findViewById(R.id.sp_grade);
-        cb_done = (CheckBox)findViewById(R.id.cb_done);
-        btn_coment = (Button)findViewById(R.id.btn_coment);
+        spinner = (Spinner) findViewById(R.id.sp_grade);
+        cbDone = (CheckBox) findViewById(R.id.cb_done);
+        cbFavorite = (CheckBox) findViewById(R.id.cb_favorite);
+        cbUp = (CheckBox) findViewById(R.id.cb_up);
+        btn_comment = (Button) findViewById(R.id.btn_coment);
 
-        gradeArrayAdapter = ArrayAdapter.createFromResource(this,R.array.grade,android.R.layout.simple_spinner_item);
+        gradeArrayAdapter = ArrayAdapter.createFromResource(this, R.array.grade, android.R.layout.simple_spinner_item);
         gradeArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(gradeArrayAdapter);
         spinner.setOnItemSelectedListener(this);
         spinner.setSelection(gradeArrayAdapter.getCount() - 1);
-        cb_done.setOnCheckedChangeListener(this);
-        btn_coment.setOnClickListener(this);
+        cbDone.setOnCheckedChangeListener(this);
+        cbUp.setOnCheckedChangeListener(this);
+        cbFavorite.setOnCheckedChangeListener(this);
+        btn_comment.setOnClickListener(this);
 
         initCommentList();
         setListViewAdapter();
+        setOtherViews();
+    }
+
+    private void setOtherViews() {
+        tvTilte.setText(food.name);
+        tvContent.setText(food.introduction);
+        cbFavorite.setChecked(food.isFavorite);
+        cbUp.setChecked(food.isUp);
+        getBitmap().display(videoView, food.picUrl);
     }
 
     private void initCommentList() {
-        foodComents.clear();
+        List<FoodComent> foodComents = new ArrayList<>();
         FoodComent com = new FoodComent(3, true, "吃货是我", "生抽代替老抽，效果更好的", "2015.10.10 14:32");
         foodComents.add(com);
         com = new FoodComent(5, true, "一张馅饼", "食材好多啊，光准备就要很久了", "2015.10.10 14:32");
         foodComents.add(com);
+
+        List<FoodMaterial> materials = new ArrayList<>();
+        FoodMaterial material = new FoodMaterial("鸡肉", "1只");
+        materials.add(material);
+        material = new FoodMaterial("大蒜", "两瓣");
+        materials.add(material);
+        material = new FoodMaterial("辣椒", "2个");
+        materials.add(material);
+        material = new FoodMaterial("酱油", "一小碟");
+        materials.add(material);
+
+        List<FoodStep> steps = new ArrayList<>();
+        FoodStep step = new FoodStep(1, "把鸡给片好，炖煮三十分钟");
+        steps.add(step);
+        step = new FoodStep(2, "切蒜泥，弄好在盘子里");
+        steps.add(step);
+        step = new FoodStep(3, "切生姜");
+        steps.add(step);
+
+        food = new Food("白切鸡", "白切鸡是一道色香味俱全的汉族传统名肴，属于粤菜系鸡肴中最普通的一种，是正宗的客家特有菜肴，属浸鸡类，以其制作简易，刚熟不烂，不加配料且保持原味为特点。", true, false,
+                "http://i3.meishichina.com/attachment/recipe/201102/201102172239235.jpg", "http://www.lizhengxian.com/video.mp4",
+                materials, steps, foodComents);
     }
 
     private void setListViewAdapter() {
-        List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
-        for (FoodComent coment : foodComents) {
+        List<Map<String, Object>> materials = new ArrayList<Map<String, Object>>();
+        for (FoodMaterial material : food.foodMaterials) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("name", material.materialName);
+            map.put("weight", material.weight);
+            materials.add(map);
+        }
+        materialListAdapter = new SimpleAdapter(this, materials, R.layout.item_food_material,
+                new String[]{"name", "weight"}, new int[]{R.id.material_name, R.id.material_weight});
+        lv_materials.setAdapter(materialListAdapter);
+
+        List<Map<String, Object>> steps = new ArrayList<Map<String, Object>>();
+        for (FoodStep step : food.foodStepses) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("content", step.number + "、" + step.step);
+            steps.add(map);
+        }
+        stepListAdapter = new SimpleAdapter(this, steps, R.layout.item_food_step, new String[]{"content"}, new int[]{R.id.tv_item});
+        lv_steps.setAdapter(stepListAdapter);
+
+        List<Map<String, Object>> coments = new ArrayList<Map<String, Object>>();
+        for (FoodComent coment : food.foodComents) {
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("grade", coment.grade + "分");
             map.put("done", coment.done ? "做过" : "  ");
             map.put("userName", coment.userName);
             map.put("content", coment.content);
             map.put("time", coment.time);
-            data.add(map);
+            coments.add(map);
         }
-        commentListAdapter = new SimpleAdapter(this, data,
+        commentListAdapter = new SimpleAdapter(this, coments,
                 R.layout.item_food_coment,
                 new String[]{"grade", "done", "userName", "content", "time"}, new int[]{R.id.coment_grade, R.id.coment_done, R.id.coment_userName, R.id.coment_content, R.id.coment_datetime});
         lv_comments.setAdapter(commentListAdapter);
     }
 
 
-
     private void playVedio() {
-        Uri uri = Uri.parse("http://www.lizhengxian.com/testVideo.flv");
+        Uri uri = Uri.parse(food.videoUrl);
 //        Uri uri = Uri.fromFile(new File(currentFood.videoUrl));
 //调用系统自带的播放器
         Intent intent = new Intent(Intent.ACTION_VIEW);
