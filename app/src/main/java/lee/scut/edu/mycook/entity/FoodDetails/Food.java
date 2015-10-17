@@ -1,9 +1,10 @@
-package lee.scut.edu.mycook.entity;
+package lee.scut.edu.mycook.entity.FoodDetails;
 
 import java.util.List;
 
 /**
  * Created by jsonlee on 10/16/15.
+ * 食物的具体描述，第三层菜单需要的所有数据
  */
 public class Food {
     public String name; //名字

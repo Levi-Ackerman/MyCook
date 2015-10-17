@@ -1,4 +1,4 @@
-package lee.scut.edu.mycook.entity;
+package lee.scut.edu.mycook.entity.FoodDetails;
 
 /**
  * Created by jsonlee on 10/16/15.

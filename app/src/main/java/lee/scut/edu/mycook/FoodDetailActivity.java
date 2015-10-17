@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import lee.scut.edu.mycook.entity.FoodComent;
+import lee.scut.edu.mycook.entity.FoodDetails.FoodComent;
 
 public class FoodDetailActivity extends BaseActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener, CompoundButton.OnCheckedChangeListener {
 
