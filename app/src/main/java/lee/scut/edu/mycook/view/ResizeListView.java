@@ -9,6 +9,7 @@ import android.widget.ListView;
 
 /**
  * Created by jsonlee on 10/17/15.
+ * ScrollView中嵌套的ListView只会显示一行，所以要Resize height，显示所有行
  */
 public class ResizeListView extends ListView {
     public ResizeListView(Context context) {

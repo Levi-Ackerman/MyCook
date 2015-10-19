@@ -40,21 +40,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                layout="@layout/view_show_container"
+                layout="@layout/include_show_container"
                 android:id="@+id/container_pop"/>
             <include
                 android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                layout="@layout/view_show_container"
+                layout="@layout/include_show_container"
                 android:id="@+id/container_recommand"/>
             <include
                 android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                layout="@layout/view_show_container"
+                layout="@layout/include_show_container"
                 android:id="@+id/container_history"/>
         </LinearLayout>
     </RelativeLayout>

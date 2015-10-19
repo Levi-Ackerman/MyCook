@@ -32,34 +32,34 @@
             android:id="@+id/vw_food0"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            layout="@layout/view_food_name"
+            layout="@layout/include_food_name"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
         <include
             android:id="@+id/vw_food1"
             android:layout_marginRight="10dp"
-            layout="@layout/view_food_name"
+            layout="@layout/include_food_name"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
         <include
             android:id="@+id/vw_food2"
             android:layout_marginRight="10dp"
-            layout="@layout/view_food_name"
+            layout="@layout/include_food_name"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
         <include
             android:id="@+id/vw_food3"
-            layout="@layout/view_food_name"
+            layout="@layout/include_food_name"
             android:layout_marginRight="10dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
         <include
             android:id="@+id/vw_food4"
-            layout="@layout/view_food_name"
+            layout="@layout/include_food_name"
             android:layout_marginRight="10dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"

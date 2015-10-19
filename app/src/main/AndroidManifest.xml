@@ -38,6 +38,8 @@
             android:screenOrientation="landscape"/>
         <activity android:name=".SongCategoryActivity"
             android:screenOrientation="landscape"/>
+        <activity android:name=".PersonalActivity"
+            android:screenOrientation="landscape"/>
     </application>
 
 </manifest>

@@ -18,6 +18,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         findViewById(R.id.ib_player).setOnClickListener(this);
         findViewById(R.id.ib_caixi).setOnClickListener(this);
         findViewById(R.id.ib_mall).setOnClickListener(this);
+        findViewById(R.id.ib_personal).setOnClickListener(this);
 //        getItem("home", "test.php","1", Item.class, new OnJsonReturnListener<Item>() {
 //            @Override
 //            public void onJsonReturn(Item result) {
@@ -58,10 +59,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.ib_caixi:
                 jumpToActivity(FoodListActivity.class);
                 break;
+            case R.id.ib_personal:
+                jumpToActivity(PersonalActivity.class);
+                break;
             case R.id.ib_mall:
                 Intent in = new Intent(Intent.ACTION_VIEW);
                 in.setData(Uri.parse("http://www.taobao.com"));
                 startActivity(in);
+                break;
         }
     }
 }
