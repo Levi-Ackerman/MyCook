@@ -34,6 +34,7 @@
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".FoodListActivity"
+            android:windowSoftInputMode="adjustNothing|stateHidden"
             android:screenOrientation="landscape"/>
         <activity android:name=".SongCategoryActivity"
             android:screenOrientation="landscape"/>
