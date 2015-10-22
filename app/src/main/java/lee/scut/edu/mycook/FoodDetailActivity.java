@@ -90,6 +90,7 @@ public class FoodDetailActivity extends BaseActivity implements View.OnClickList
         gradeArrayAdapter = ArrayAdapter.createFromResource(this, R.array.grade, android.R.layout.simple_spinner_item);
         gradeArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(gradeArrayAdapter);
+
         spinner.setOnItemSelectedListener(this);
         spinner.setSelection(gradeArrayAdapter.getCount() - 1);
         cbDone.setOnCheckedChangeListener(this);

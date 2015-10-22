@@ -4,5 +4,5 @@
     <dimen name="activity_vertical_margin">1dp</dimen>
     <dimen name="text_size_text_title">40sp</dimen>
     <dimen name="text_size_text_title2">24sp</dimen>
-    <dimen name="text_size_text_content">35sp</dimen>
+    <dimen name="text_size_text_content">25sp</dimen>
 </resources>

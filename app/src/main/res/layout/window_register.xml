@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/et_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="用户名" />
+
+    <EditText
+        android:id="@+id/et_passwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="密码" />
+
+    <EditText
+        android:id="@+id/et_passwd_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="确认密码" />
+
+    <Spinner
+        android:id="@+id/sp_gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="性别" />
+
+    <Spinner
+        android:id="@+id/sp_city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="地点" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <DatePicker
+            android:id="@+id/dp_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:calendarViewShown="false">
+        </DatePicker>
+        <TextView
+            android:text="出生日期："
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_date"
+            android:text="日期"
+            android:layout_gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content">-->
+    <!--<Button-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_weight="1"-->
+    <!--android:text="注册"-->
+    <!--android:layout_height="wrap_content" />-->
+    <!--<Button-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_weight="1"-->
+    <!--android:text="取消"-->
+    <!--android:layout_height="wrap_content" />-->
+    <!--</LinearLayout>-->
+</LinearLayout>
