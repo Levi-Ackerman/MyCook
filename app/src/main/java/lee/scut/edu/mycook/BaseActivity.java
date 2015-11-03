@@ -62,13 +62,14 @@ public abstract class BaseActivity extends ActionBarActivity {
         getPreferences().edit().putInt(key, value).commit();
     }
 
-    static FinalHttp http;
+    private static FinalHttp http;
 
-    public static FinalHttp getHttp() {
+    protected static FinalHttp getHttp() {
         if (http == null)
             http = new FinalHttp();
         return http;
     }
+
     public FinalBitmap getBitmap(){
         return FinalBitmap.create(this);
     }
