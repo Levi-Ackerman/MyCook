@@ -4,19 +4,20 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,6 +32,7 @@ import lee.scut.edu.mycook.view.ResizeListView;
 
 public class FoodDetailActivity extends BaseActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener, CompoundButton.OnCheckedChangeListener {
 
+    String json = "{\"result\":true,\"food\":{\"id\":32,\"name\":\"麻婆豆腐\",\"introduction\":\"有名的川菜，让你流口水\",\"isFavorite\":true,\"isUp\":false,\"picUrl\":\"http://i3.meishichina.com/attachment/recipe/201102/201102172239235.jpg\",\"videoUrl\":\"http://www.lizhengxian.com/video.mp4\",\"foodMaterials\":[{\"materialName\":\"豆腐\",\"weight\":\"100g\"},{\"materialName\":\"辣酱\",\"weight\":\"1勺\"},{\"materialName\":\"酱油\",\"weight\":\"1小碟\"},{\"materialName\":\"大蒜\",\"weight\":\"半颗\"}],\"foodSteps\":[{\"number\":1,\"step\":\"豆腐切块，装盘，要嫩\"},{\"number\":2,\"step\":\"辣酱炒熟，淋在豆腐上\"},{\"number\":3,\"step\":\"等待十分钟，豆腐充分吸收\"}],\"foodComents\":[{\"grade\":5,\"done\":true,\"userName\":\"萌萌哒是我\",\"content\":\"这么简单就能做，十分钟就会了\",\"time\":\"2015.09.0814:32\"},{\"grade\":2,\"done\":false,\"userName\":\"叶良辰来也\",\"content\":\"辣酱要选对，我偏爱湖南的辣酱，正宗\",\"time\":\"2015.10.0809:12\"}]}}";
     TextView tvTilte;
     ListView lv_comments;
     ResizeListView lv_materials;
@@ -136,9 +138,15 @@ public class FoodDetailActivity extends BaseActivity implements View.OnClickList
         step = new FoodStep(3, "切生姜");
         steps.add(step);
 
-        food = new Food("白切鸡", "白切鸡是一道色香味俱全的汉族传统名肴，属于粤菜系鸡肴中最普通的一种，是正宗的客家特有菜肴，属浸鸡类，以其制作简易，刚熟不烂，不加配料且保持原味为特点。", true, false,
-                "http://i3.meishichina.com/attachment/recipe/201102/201102172239235.jpg", "http://www.lizhengxian.com/video.mp4",
-                materials, steps, foodComents);
+//        food = new Food("白切鸡", "白切鸡是一道色香味俱全的汉族传统名肴，属于粤菜系鸡肴中最普通的一种，是正宗的客家特有菜肴，属浸鸡类，以其制作简易，刚熟不烂，不加配料且保持原味为特点。", true, false,
+//                "http://i3.meishichina.com/attachment/recipe/201102/201102172239235.jpg", "http://www.lizhengxian.com/video.mp4",
+//                materials, steps, foodComents);
+        try {
+            JSONObject obj = new JSONObject(json);
+            food = gson.fromJson(obj.getString("food"),Food.class);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setListViewAdapter() {
@@ -154,7 +162,7 @@ public class FoodDetailActivity extends BaseActivity implements View.OnClickList
         lv_materials.setAdapter(materialListAdapter);
 
         List<Map<String, Object>> steps = new ArrayList<Map<String, Object>>();
-        for (FoodStep step : food.foodStepses) {
+        for (FoodStep step : food.foodSteps) {
             Map<String, Object> map = new HashMap<>();
             map.put("content", step.number + "、" + step.step);
             steps.add(map);

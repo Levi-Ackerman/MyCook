@@ -14,10 +14,10 @@ public class Food {
     public String picUrl; //大图链接
     public String videoUrl; //视频链接
     public List<FoodMaterial> foodMaterials; //食材
-    public List<FoodStep> foodStepses; //做菜步骤
+    public List<FoodStep> foodSteps; //做菜步骤
     public List<FoodComent> foodComents; //评论
 
-    public Food(String name, String introduction, boolean isFavorite, boolean isUp, String picUrl, String videoUrl, List<FoodMaterial> foodMaterials, List<FoodStep> foodStepses, List<FoodComent> foodComents) {
+    public Food(String name, String introduction, boolean isFavorite, boolean isUp, String picUrl, String videoUrl, List<FoodMaterial> foodMaterials, List<FoodStep> foodSteps, List<FoodComent> foodComents) {
         this.name = name;
         this.introduction = introduction;
         this.isFavorite = isFavorite;
@@ -25,7 +25,7 @@ public class Food {
         this.picUrl = picUrl;
         this.videoUrl = videoUrl;
         this.foodMaterials = foodMaterials;
-        this.foodStepses = foodStepses;
+        this.foodSteps = foodSteps;
         this.foodComents = foodComents;
     }
 }
