@@ -70,22 +70,20 @@ public abstract class BaseActivity extends ActionBarActivity {
         return http;
     }
 
-    public FinalBitmap getBitmap(){
+    protected FinalBitmap getBitmap(){
         return FinalBitmap.create(this);
     }
-    protected void getListFromHttp(final String home, final String type, final OnJsonReturnListener listener) {
+    protected void getJsonResFromHttp(final String url, final Class type, final OnJsonReturnListener listener) {
         final ProgressDialog dlg = new ProgressDialog(this);
         dlg.setTitle("正在加载，请稍候");
         dlg.show();
         final Thread thread = new Thread() {
             @Override
             public void run() {
-                String jsonString = getHttp().getSync(url + "/" + home+"/"+type).toString();
-                Type listType = new TypeToken<ArrayList<Item>>() {
-                }.getType();
-                List<Item> items = gson.fromJson(jsonString, listType);
+                String jsonString = getHttp().getSync(url).toString();
+                Object result = gson.fromJson(jsonString, type);
                 dlg.cancel();
-                listener.onJsonReturn(items);
+                listener.onJsonReturn(result);
             }
         };
         thread.start();
