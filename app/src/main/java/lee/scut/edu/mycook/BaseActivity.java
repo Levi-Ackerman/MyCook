@@ -33,7 +33,7 @@ import java.util.List;
  * Created by jsonlee on 10/1/15.
  */
 public abstract class BaseActivity extends ActionBarActivity {
-    Gson gson = new Gson();
+    final Gson gson = new Gson();
     Handler handler = new Handler();
 //    final String url = "http://125.216.243.195:8080/MyCook";
     final String url = "http://www.lizhengxian.com";
