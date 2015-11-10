@@ -28,6 +28,7 @@ import lee.scut.edu.mycook.entity.FoodDetails.Food;
 import lee.scut.edu.mycook.entity.FoodDetails.FoodComent;
 import lee.scut.edu.mycook.entity.FoodDetails.FoodMaterial;
 import lee.scut.edu.mycook.entity.FoodDetails.FoodStep;
+import lee.scut.edu.mycook.entity.OfflineData;
 import lee.scut.edu.mycook.view.ResizeListView;
 
 public class FoodDetailActivity extends BaseActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener, CompoundButton.OnCheckedChangeListener {
@@ -58,7 +59,7 @@ public class FoodDetailActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        showToast(parent.getItemAtPosition(position).toString());
+
     }
 
     @Override
@@ -141,12 +142,13 @@ public class FoodDetailActivity extends BaseActivity implements View.OnClickList
 //        food = new Food("白切鸡", "白切鸡是一道色香味俱全的汉族传统名肴，属于粤菜系鸡肴中最普通的一种，是正宗的客家特有菜肴，属浸鸡类，以其制作简易，刚熟不烂，不加配料且保持原味为特点。", true, false,
 //                "http://i3.meishichina.com/attachment/recipe/201102/201102172239235.jpg", "http://www.lizhengxian.com/video.mp4",
 //                materials, steps, foodComents);
-        try {
-            JSONObject obj = new JSONObject(json);
-            food = gson.fromJson(obj.getString("food"),Food.class);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            JSONObject obj = new JSONObject(json);
+//            food = gson.fromJson(obj.getString("food"),Food.class);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+        food = offlineData.foods[getIntent().getIntExtra("foodId",-1)];
     }
 
     private void setListViewAdapter() {

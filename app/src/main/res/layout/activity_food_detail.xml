@@ -25,7 +25,7 @@
                     android:id="@+id/vv_videoView"
                     android:layout_width="320dp"
                     android:layout_height="240dp"
-                    android:scaleType="fitStart"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/baiqieji" />
 
                 <ImageView

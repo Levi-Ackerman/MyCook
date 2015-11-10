@@ -7,6 +7,7 @@ import java.util.List;
  * 食物的具体描述，第三层菜单需要的所有数据
  */
 public class Food {
+    public int foodId;
     public String name; //名字
     public String introduction; //介绍
     public boolean isFavorite; //收藏
@@ -17,8 +18,9 @@ public class Food {
     public List<FoodStep> foodSteps; //做菜步骤
     public List<FoodComent> foodComents; //评论
 
-    public Food(String name, String introduction, boolean isFavorite, boolean isUp, String picUrl, String videoUrl, List<FoodMaterial> foodMaterials, List<FoodStep> foodSteps, List<FoodComent> foodComents) {
+    public Food(int foodId,String name, String introduction, boolean isFavorite, boolean isUp, String picUrl, String videoUrl, List<FoodMaterial> foodMaterials, List<FoodStep> foodSteps, List<FoodComent> foodComents) {
         this.name = name;
+        this.foodId = foodId;
         this.introduction = introduction;
         this.isFavorite = isFavorite;
         this.isUp = isUp;
@@ -27,5 +29,8 @@ public class Food {
         this.foodMaterials = foodMaterials;
         this.foodSteps = foodSteps;
         this.foodComents = foodComents;
+    }
+    public Food(){
+
     }
 }

@@ -1,5 +1,6 @@
 package lee.scut.edu.mycook;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -114,7 +115,11 @@ public class FoodListActivity extends BaseActivity implements View.OnClickListen
         final int tag = (int) v.getTag();
         if (tag >= 100) {
             // food image clicked
-            jumpToActivity(FoodDetailActivity.class);
+            int col = tag%10;
+            int row = tag/10-10;
+            Intent in = new Intent(this,FoodDetailActivity.class);
+            in.putExtra("foodId",0);
+            startActivity(in);
         } else {
             //button clicked
         }
