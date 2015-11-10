@@ -74,6 +74,12 @@ public class PlayerActivity extends BaseActivity implements AdapterView.OnItemCl
     }
 
     @Override
+    protected void onPause() {
+        unregisterReceiver(receiver);
+        super.onPause();
+    }
+
+    @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Map<String,String> map = (Map<String, String>) listView.getAdapter().getItem(position);
         tvName.setText(map.get("fileName"));

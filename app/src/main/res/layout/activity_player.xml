@@ -9,7 +9,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="6"
-        android:background="@android:color/white">
+        android:background="@drawable/player_backgroud">
         <TextView
             android:id="@+id/tv_songname"
             android:layout_width="wrap_content"
@@ -24,6 +24,7 @@
             android:layout_below="@+id/tv_songname"
             android:layout_centerInParent="true"
             android:layout_marginTop="30dp"
+            android:textSize="30sp"
             android:text="停止" />
     </RelativeLayout>
 

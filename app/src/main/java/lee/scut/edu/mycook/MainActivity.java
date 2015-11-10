@@ -54,7 +54,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ib_player:
-                jumpToActivity(SongCategoryActivity.class);
+                jumpToActivity(PlayerActivity.class);
                 break;
             case R.id.ib_caixi:
                 jumpToActivity(FoodListActivity.class);
