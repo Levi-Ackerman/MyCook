@@ -7,6 +7,7 @@ import lee.scut.edu.mycook.entity.FoodDetails.Food;
 import lee.scut.edu.mycook.entity.FoodDetails.FoodComent;
 import lee.scut.edu.mycook.entity.FoodDetails.FoodMaterial;
 import lee.scut.edu.mycook.entity.FoodDetails.FoodStep;
+import lee.scut.edu.mycook.entity.FoodLists.FoodListItem;
 import lee.scut.edu.mycook.entity.FoodLists.FoodLists;
 import lee.scut.edu.mycook.entity.FoodLists.FoodRecommend;
 
@@ -14,8 +15,9 @@ import lee.scut.edu.mycook.entity.FoodLists.FoodRecommend;
  * Created by jsonlee on 11/10/15.
  */
 public class OfflineData {
-    String picPath = "/sdcard/chushitong";
+    String picPath = "/sdcard/chushitong/";
     public Food[] foods;
+    public FoodLists foodLists;
 
     public OfflineData() {
         foods = new Food[15];
@@ -47,10 +49,72 @@ public class OfflineData {
         foods[0].foodId = 0;
         foods[0].name = "蔓越曲奇";
         foods[0].introduction = "好吃又低卡路里的零食，在家有烤箱就能做，绝对值得一试！";
-        foods[0].picUrl = "/sdcard/chushitong/manyuequqi.jpg";
-        foods[0].videoUrl = "/sdcard/chushitong/manyuequqi.flv";
+        foods[0].picUrl = picPath+"manyuequqi.jpg";
+        foods[0].videoUrl = picPath+"manyuequqi.flv";
         foods[0].foodSteps = steps;
         foods[0].foodMaterials = materials;
         foods[0].foodComents = coments;
+
+        steps = new ArrayList<>();
+        materials = new ArrayList<>();
+        coments = new ArrayList<>();
+        steps.add(new FoodStep(1, "鸡胸片成两大片然后用刀背敲松，切成条再切成块备用"));
+        steps.add(new FoodStep(2, "葱切成1.5-2cm的段，姜切片，辣椒用剪刀剪开去除种子"));
+        steps.add(new FoodStep(3, "切好的鸡肉用料酒、胡椒粉、生抽酱油调味后淹制15分钟后加入干淀粉拌匀备用"));
+        steps.add(new FoodStep(4, "把除水淀粉以外酱汁材料中所有的食材在一个碗里混合备用"));
+        steps.add(new FoodStep(5, "锅中加入平时炒菜的油，油热后把调好味的鸡肉滑炒直到看不到粉色的生鸡肉就盛出来"));
+        steps.add(new FoodStep(6, "锅中留底油小火，加入花椒、干辣椒炒出香味后加入葱、姜继续炒出香味"));
+        steps.add(new FoodStep(7, "转大火加入炒好的鸡肉翻炒，然后加入调好的酱汁稍煮1分钟左右"));
+        steps.add(new FoodStep(8, "用水淀粉勾芡后加入炸花生米翻炒均匀就可以出锅了"));
+        materials.add(new FoodMaterial("鸡胸肉", "1块"));
+        materials.add(new FoodMaterial("白胡椒粉", "1茶勺"));
+        materials.add(new FoodMaterial("生抽酱油", "1/2茶勺"));
+        materials.add(new FoodMaterial("干淀粉", "1茶勺"));
+        materials.add(new FoodMaterial("白糖", "50g"));
+        materials.add(new FoodMaterial("葱", "5g"));
+        materials.add(new FoodMaterial("姜", "适量"));
+        materials.add(new FoodMaterial("干辣椒", "2茶勺"));
+        coments.add(new FoodComent(4,true,"蔡蔡","滑炒鸡肉时不要时间太长，否则鸡肉会变老","2015-11-01"));
+        coments.add(new FoodComent(4,true,"追随","调味料可以个人口味适当调整用量","2015-09-01"));
+        foods[1] =new Food();
+        foods[1].foodId = 1;
+        foods[1].name = "宫保鸡丁";
+        foods[1].introduction = "跟随这个食谱有个传统故事，它讲述这道菜如何从古代演变到今天。它的味道充满层次，酸甜中略带一点辣，因为这些味道的组合让这道菜变的很受欢迎，事实让宫保鸡丁在全世界也是最有名的一道中餐了。你一定要试试这道菜。";
+        foods[1].picUrl = picPath+"gongbaojiding.jpg";
+        foods[1].videoUrl = picPath+"gongbaojiding.flv";
+        foods[1].foodSteps = steps;
+        foods[1].foodMaterials = materials;
+        foods[1].foodComents = coments;
+
+        steps = new ArrayList<>();
+        materials = new ArrayList<>();
+        coments = new ArrayList<>();
+        steps.add(new FoodStep(1, "饺子皮上加上饺子馅料，对折将上部面皮捏合"));
+        steps.add(new FoodStep(2, "两手拇指与食指夹住两侧面皮，用力捏紧"));
+        steps.add(new FoodStep(3, "两手向中间挤压，挤出饺子的大肚子来"));
+        materials.add(new FoodMaterial("饺子皮", "若干"));
+        materials.add(new FoodMaterial("饺子馅", "若干"));
+        coments.add(new FoodComent(4,false,"追","看似最简单的包法，其实才是最难整的！！表示学不会！/(ㄒoㄒ)/~~","2015-11-01"));
+        coments.add(new FoodComent(1,true,"蔡","在捏的过程中，两手应该是交叠着的，将饺子包在手心","2014-01-01"));
+        coments.add(new FoodComent(5,true,"岚小新","用这种方式可以包入更多馅料，不要吝啬哦","2015-04-01"));
+        foods[2] =new Food();
+        foods[2].foodId = 2;
+        foods[2].name = "大肚饺子";
+        foods[2].introduction = "肚子鼓鼓的大饺子看起来就很喜庆\n" +
+                "饺子的形状有很多，鼓肚子的、长形的，甚至圆圆的三角的\n" +
+                "这种用挤的方式来包饺子的方法貌似是多见于北方，一捏一挤速度快包馅多";
+        foods[2].picUrl = picPath+"dadujiaozi.jpg";
+        foods[2].videoUrl = picPath+"dadujiaozi.flv";
+        foods[2].foodSteps = steps;
+        foods[2].foodMaterials = materials;
+        foods[2].foodComents = coments;
+
+        foodLists = new FoodLists();
+        foodLists.recommendFood.add(new FoodRecommend(foods[0].name,foods[0].picUrl,foods[0].foodId));
+        foodLists.historyFood.add(new FoodRecommend(foods[1].name,foods[1].picUrl,foods[1].foodId));
+        foodLists.popFoods.add(new FoodRecommend(foods[2].name,foods[2].picUrl,foods[2].foodId));
+        for (int i = 0; i < 3; i++) {
+            foodLists.allFoods.add(new FoodListItem(foods[i].foodId,foods[i].name));
+        }
     }
 }

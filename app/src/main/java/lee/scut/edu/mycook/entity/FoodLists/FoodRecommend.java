@@ -7,12 +7,12 @@ package lee.scut.edu.mycook.entity.FoodLists;
 public class FoodRecommend {
     public String name;
 
-    public FoodRecommend(String name, String picUrl, String id) {
+    public FoodRecommend(String name, String picUrl, int id) {
         this.name = name;
         this.picUrl = picUrl;
         this.id = id;
     }
 
     public String picUrl;
-    public String id;
+    public int id;
 }

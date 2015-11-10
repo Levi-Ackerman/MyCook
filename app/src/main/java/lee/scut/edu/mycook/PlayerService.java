@@ -24,7 +24,7 @@ public class PlayerService extends Service {
     public PlayerService() {
         musicList = new ArrayList<String>();
         player = new MediaPlayer();
-        File[] mp3s = App.MUSIC_PATH.listFiles(new FilenameFilter() {
+        File[] mp3s = new File("/sdcard/chushitong/").listFiles(new FilenameFilter() {
 
             @Override
             public boolean accept(File dir, String filename) {

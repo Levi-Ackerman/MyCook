@@ -5,6 +5,11 @@ package lee.scut.edu.mycook.entity.FoodLists;
  * 所有菜品的列表
  */
 public class FoodListItem {
+    public FoodListItem(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public String name;
-    public String id;
+    public int id;
 }

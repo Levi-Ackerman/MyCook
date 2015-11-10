@@ -1,5 +1,6 @@
 package lee.scut.edu.mycook.entity.FoodLists;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,4 +12,10 @@ public class FoodLists {
     public List<FoodRecommend> popFoods;    //热门菜谱
     public List<FoodRecommend> recommendFood;//猜你喜欢
     public List<FoodRecommend> historyFood;  //历史记录
+    public FoodLists(){
+        allFoods =new ArrayList<>();
+        popFoods =new ArrayList<>();
+        recommendFood = new ArrayList<>();
+        historyFood = new ArrayList<>();
+    }
 }

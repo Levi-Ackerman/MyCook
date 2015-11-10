@@ -27,7 +27,7 @@ import lee.scut.edu.mycook.entity.FoodLists.FoodRecommend;
  * Created by jsonlee on 10/8/15.
  */
 public class FoodListActivity extends BaseActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
-    String json="{\"result\":true,\"foodlists\":{\"allFoods\":[{\"name\":\"白切鸡\",\"id\":1},{\"name\":\"麻婆豆腐\",\"id\":2}],\"popFoods\":[{\"name\":\"辣白菜\",\"id\":21,\"picUrl\":\"https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3750799260,3055367655&fm=58\"},{\"name\":\"鸡杂\",\"id\":23,\"picUrl\":\"https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1291496758,915365011&fm=58\"}],\"recommendFood\":[{\"name\":\"酸辣土豆丝\",\"id\":51,\"picUrl\":\"https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2379760315,1627755912&fm=58\"},{\"name\":\"红烧茄子\",\"id\":43,\"picUrl\":\"https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1628219389,1317093217&fm=58\"}],\"historyFood\":[{\"name\":\"小炒肉\",\"id\":32,\"picUrl\":\"https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2548423499,2318854489&fm=58\"},{\"name\":\"鸡蛋饼\",\"id\":33,\"picUrl\":\"https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1822663682,1133471582&fm=58\"}]}}";
+    String json = "{\"result\":true,\"foodlists\":{\"allFoods\":[{\"name\":\"白切鸡\",\"id\":1},{\"name\":\"麻婆豆腐\",\"id\":2}],\"popFoods\":[{\"name\":\"辣白菜\",\"id\":21,\"picUrl\":\"https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3750799260,3055367655&fm=58\"},{\"name\":\"鸡杂\",\"id\":23,\"picUrl\":\"https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1291496758,915365011&fm=58\"}],\"recommendFood\":[{\"name\":\"酸辣土豆丝\",\"id\":51,\"picUrl\":\"https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2379760315,1627755912&fm=58\"},{\"name\":\"红烧茄子\",\"id\":43,\"picUrl\":\"https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1628219389,1317093217&fm=58\"}],\"historyFood\":[{\"name\":\"小炒肉\",\"id\":32,\"picUrl\":\"https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2548423499,2318854489&fm=58\"},{\"name\":\"鸡蛋饼\",\"id\":33,\"picUrl\":\"https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1822663682,1133471582&fm=58\"}]}}";
     FoodLists foodLists = null;
     List<FoodRecommend>[] foodRecommendLists; //3个推荐列表
     ImageView[][] ibFoodPictures = new ImageView[3][5];
@@ -66,14 +66,12 @@ public class FoodListActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void getJson() {
-        try {
-            JSONObject ele = new JSONObject(json);
-            String list = ele.getString("foodlists");
-            foodLists = gson.fromJson(list, FoodLists.class);
-            foodRecommendLists = new List[]{foodLists.popFoods,foodLists.recommendFood,foodLists.historyFood};
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+//            JSONObject ele = new JSONObject(json);
+//            String list = ele.getString("foodlists");
+//            foodLists = gson.fromJson(list, FoodLists.class);
+        foodLists = offlineData.foodLists;
+        foodRecommendLists = new List[]{foodLists.popFoods, foodLists.recommendFood, foodLists.historyFood};
+
     }
 
     private void initDatas() {
@@ -115,10 +113,10 @@ public class FoodListActivity extends BaseActivity implements View.OnClickListen
         final int tag = (int) v.getTag();
         if (tag >= 100) {
             // food image clicked
-            int col = tag%10;
-            int row = tag/10-10;
-            Intent in = new Intent(this,FoodDetailActivity.class);
-            in.putExtra("foodId",0);
+            int col = tag % 10;
+            int row = tag / 10 - 10;
+            Intent in = new Intent(this, FoodDetailActivity.class);
+            in.putExtra("foodId", foodRecommendLists[row].get(col).id);
             startActivity(in);
         } else {
             //button clicked
@@ -127,7 +125,9 @@ public class FoodListActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        jumpToActivity(FoodDetailActivity.class);
+        Intent in = new Intent(this, FoodDetailActivity.class);
+        in.putExtra("foodId", foodLists.allFoods.get(position).id);
+        startActivity(in);
     }
 
     List<String> allFoods = new ArrayList<>();
