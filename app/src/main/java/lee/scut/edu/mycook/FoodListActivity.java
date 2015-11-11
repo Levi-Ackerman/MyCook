@@ -2,9 +2,12 @@ package lee.scut.edu.mycook;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -32,29 +35,13 @@ public class FoodListActivity extends BaseActivity implements View.OnClickListen
     List<FoodRecommend>[] foodRecommendLists; //3个推荐列表
     ImageView[][] ibFoodPictures = new ImageView[3][5];
     TextView[][] tvFoodNames = new TextView[3][5];
-    //    String[] foodNames = {"白切鸡","鱼香茄子","酸辣鸡杂,", "家常土豆饼", "蘑菇三鲜汤", "麻婆豆腐", "湖南小炒肉", "家常早餐鸡蛋饼", "红烧茄子", "醋溜土豆丝", "红烧肉", "鲜带鱼", "豉香江虾炒韭菜", "茄酱鲜虾炒意粉", "鱼香虾仁"};
-//    String[] foodImgs = {"https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3688751828,2925574408&fm=58",
-//            "https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1291496758,915365011&fm=58",
-//            "https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=836457649,163339023&fm=58",
-//            "https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3750799260,3055367655&fm=58",
-//            "https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=547433694,3945283571&fm=58",
-//            "https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1040129828,2066831421&fm=58",
-//            "https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3308351578,4084502962&fm=58",
-//            "https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1479773097,2693381756&fm=58",
-//            "https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2874347645,273834514&fm=58",
-//            "https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2102209604,1828486137&fm=58",
-//            "https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2410981642,2390975369&fm=58",
-//            "https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2379760315,1627755912&fm=58",
-//            "https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1628219389,1317093217&fm=58",
-//            "https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2548423499,2318854489&fm=58",
-//            "https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1822663682,1133471582&fm=58"
-//    };
     View[] vwFoodIncludes = new View[3];
     Button[] btnMores = new Button[3];
     TextView[] tvShowTitles = new TextView[3];
     String[] showTitles = {"当季热门", "猜你喜欢", "历史记录"};
     View[] vwShowIncludes = new View[3];
     private ListView listView;
+    EditText etSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,10 +70,32 @@ public class FoodListActivity extends BaseActivity implements View.OnClickListen
             }
         }
         initFoodList();
-        setListViewAdapter();
+        setListViewAdapter(null);
     }
 
     private void initViews() {
+        etSearch = (EditText) findViewById(R.id.et_search_caipu);
+        etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s==null||s.equals("")){
+                    setListViewAdapter(null);
+                }
+                else{
+                    setListViewAdapter(s.toString());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         listView = (ListView) findViewById(R.id.lv_foods);
         listView.setOnItemClickListener(this);
         vwShowIncludes[0] = findViewById(R.id.container_pop);
@@ -111,8 +120,8 @@ public class FoodListActivity extends BaseActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         final int id = (int) v.getTag();
-            // food image clicked
-            FoodDetailActivity.foodId = id;
+        // food image clicked
+        FoodDetailActivity.foodId = id;
         jumpToActivity(FoodDetailActivity.class);
     }
 
@@ -132,12 +141,16 @@ public class FoodListActivity extends BaseActivity implements View.OnClickListen
         }
     }
 
-    private void setListViewAdapter() {
-        List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
-        for (String path : allFoods) {
-            Map<String, Object> map = new HashMap<String, Object>();
-            map.put("fileName", path);
-            data.add(map);
+    List<Map<String, Object>> data;
+
+    private void setListViewAdapter(String searchContent) {
+        data = new ArrayList<Map<String, Object>>();
+        for (String foodName : allFoods) {
+            if (searchContent == null || foodName.contains(searchContent)) {
+                Map<String, Object> map = new HashMap<String, Object>();
+                map.put("fileName", foodName);
+                data.add(map);
+            }
         }
         adapter = new SimpleAdapter(this, data,
                 android.R.layout.simple_list_item_1,
