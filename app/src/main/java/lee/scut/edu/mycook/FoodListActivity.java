@@ -38,7 +38,7 @@ public class FoodListActivity extends BaseActivity implements View.OnClickListen
     View[] vwFoodIncludes = new View[3];
     Button[] btnMores = new Button[3];
     TextView[] tvShowTitles = new TextView[3];
-    String[] showTitles = {"当季热门", "猜你喜欢", "历史记录"};
+    String[] showTitles = {"粤菜", "湘菜", "川菜"};
     View[] vwShowIncludes = new View[3];
     private ListView listView;
     EditText etSearch;
