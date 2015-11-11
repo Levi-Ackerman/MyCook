@@ -50,6 +50,7 @@ public class FoodDetailActivity extends BaseActivity implements View.OnClickList
     CheckBox cbUp;
     Button btn_comment;
 
+    static int foodId = -1;
     Food food;
 
     @Override
@@ -69,7 +70,7 @@ public class FoodDetailActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        showToast(isChecked + "");
+
     }
 
 
@@ -101,7 +102,7 @@ public class FoodDetailActivity extends BaseActivity implements View.OnClickList
         cbFavorite.setOnCheckedChangeListener(this);
         btn_comment.setOnClickListener(this);
 
-        initCommentList();
+        food = offlineData.getFoodById(foodId);
         setListViewAdapter();
         setOtherViews();
     }
@@ -112,43 +113,6 @@ public class FoodDetailActivity extends BaseActivity implements View.OnClickList
         cbFavorite.setChecked(food.isFavorite);
         cbUp.setChecked(food.isUp);
         getBitmap().display(videoView, food.picUrl);
-    }
-
-    private void initCommentList() {
-        List<FoodComent> foodComents = new ArrayList<>();
-        FoodComent com = new FoodComent(3, true, "吃货是我", "生抽代替老抽，效果更好的", "2015.10.10 14:32");
-        foodComents.add(com);
-        com = new FoodComent(5, true, "一张馅饼", "食材好多啊，光准备就要很久了", "2015.10.10 14:32");
-        foodComents.add(com);
-
-        List<FoodMaterial> materials = new ArrayList<>();
-        FoodMaterial material = new FoodMaterial("鸡肉", "1只");
-        materials.add(material);
-        material = new FoodMaterial("大蒜", "两瓣");
-        materials.add(material);
-        material = new FoodMaterial("辣椒", "2个");
-        materials.add(material);
-        material = new FoodMaterial("酱油", "一小碟");
-        materials.add(material);
-
-        List<FoodStep> steps = new ArrayList<>();
-        FoodStep step = new FoodStep(1, "把鸡给片好，炖煮三十分钟");
-        steps.add(step);
-        step = new FoodStep(2, "切蒜泥，弄好在盘子里");
-        steps.add(step);
-        step = new FoodStep(3, "切生姜");
-        steps.add(step);
-
-//        food = new Food("白切鸡", "白切鸡是一道色香味俱全的汉族传统名肴，属于粤菜系鸡肴中最普通的一种，是正宗的客家特有菜肴，属浸鸡类，以其制作简易，刚熟不烂，不加配料且保持原味为特点。", true, false,
-//                "http://i3.meishichina.com/attachment/recipe/201102/201102172239235.jpg", "http://www.lizhengxian.com/video.mp4",
-//                materials, steps, foodComents);
-//        try {
-//            JSONObject obj = new JSONObject(json);
-//            food = gson.fromJson(obj.getString("food"),Food.class);
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-        food = offlineData.foods[getIntent().getIntExtra("foodId",-1)];
     }
 
     private void setListViewAdapter() {

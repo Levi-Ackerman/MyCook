@@ -101,7 +101,7 @@ public class FoodListActivity extends BaseActivity implements View.OnClickListen
             for (int j = 0; j < 5; j++) {
                 ibFoodPictures[i][j] = (ImageView) vwFoodIncludes[i].findViewById(R.id.vw_food0 + j).findViewById(R.id.ib_foodImg);
                 tvFoodNames[i][j] = (TextView) vwFoodIncludes[i].findViewById(R.id.vw_food0 + j).findViewById(R.id.tv_food_simple);
-                ibFoodPictures[i][j].setTag(100 + i * 10 + j);
+                ibFoodPictures[i][j].setTag(foodRecommendLists[i].get(j).id);
                 ibFoodPictures[i][j].setOnClickListener(this);
                 vwFoodIncludes[i].findViewById(R.id.vw_food0 + j).setVisibility(j >= foodRecommendLists[i].size() ? View.INVISIBLE : View.VISIBLE);
             }
@@ -110,24 +110,16 @@ public class FoodListActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        final int tag = (int) v.getTag();
-        if (tag >= 100) {
+        final int id = (int) v.getTag();
             // food image clicked
-            int col = tag % 10;
-            int row = tag / 10 - 10;
-            Intent in = new Intent(this, FoodDetailActivity.class);
-            in.putExtra("foodId", foodRecommendLists[row].get(col).id);
-            startActivity(in);
-        } else {
-            //button clicked
-        }
+            FoodDetailActivity.foodId = id;
+        jumpToActivity(FoodDetailActivity.class);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent in = new Intent(this, FoodDetailActivity.class);
-        in.putExtra("foodId", foodLists.allFoods.get(position).id);
-        startActivity(in);
+        FoodDetailActivity.foodId = foodLists.allFoods.get(position).id;
+        jumpToActivity(FoodDetailActivity.class);
     }
 
     List<String> allFoods = new ArrayList<>();

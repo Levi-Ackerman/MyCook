@@ -35,7 +35,7 @@ import lee.scut.edu.mycook.entity.OfflineData;
  * Created by jsonlee on 10/1/15.
  */
 public abstract class BaseActivity extends ActionBarActivity {
-    OfflineData offlineData = new OfflineData();
+    static OfflineData offlineData = new OfflineData();
     final Gson gson = new Gson();
     Handler handler = new Handler();
 //    final String url = "http://125.216.243.195:8080/MyCook";
