@@ -18,12 +18,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 
 import net.tsz.afinal.FinalBitmap;
 import net.tsz.afinal.FinalHttp;
 import net.tsz.afinal.http.AjaxCallBack;
 import net.tsz.afinal.http.AjaxParams;
+
+import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -38,8 +41,9 @@ public abstract class BaseActivity extends ActionBarActivity {
     static OfflineData offlineData = new OfflineData();
     final Gson gson = new Gson();
     Handler handler = new Handler();
-//    final String url = "http://125.216.243.195:8080/MyCook";
+    //    final String url = "http://125.216.243.195:8080/MyCook";
     final String url = "http://www.lizhengxian.com";
+
     protected void showToast(String text) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
@@ -73,9 +77,10 @@ public abstract class BaseActivity extends ActionBarActivity {
         return http;
     }
 
-    protected FinalBitmap getBitmap(){
+    protected FinalBitmap getBitmap() {
         return FinalBitmap.create(this);
     }
+
     protected void getJsonResFromHttp(final String url, final Class type, final OnJsonReturnListener listener) {
         final ProgressDialog dlg = new ProgressDialog(this);
         dlg.setTitle("正在加载，请稍候");
@@ -92,7 +97,7 @@ public abstract class BaseActivity extends ActionBarActivity {
         thread.start();
     }
 
-    protected void getItem(final String home,final String type,final String id, final Class clazz,final OnJsonReturnListener listener) {
+    protected void getItem(final String home, final String type, final String id, final Class clazz, final OnJsonReturnListener listener) {
         final ProgressDialog dlg = new ProgressDialog(this);
         dlg.setTitle("正在加载，请稍候");
         dlg.show();
@@ -100,7 +105,7 @@ public abstract class BaseActivity extends ActionBarActivity {
             @Override
             public void run() {
                 AjaxParams params = new AjaxParams("id", id);
-                String jsonString = getHttp().getSync(url + "/" + home+"/"+type, params).toString();
+                String jsonString = getHttp().getSync(url + "/" + home + "/" + type, params).toString();
                 Object item = gson.fromJson(jsonString, clazz);
                 dlg.cancel();
                 listener.onJsonReturn(item);
@@ -108,38 +113,59 @@ public abstract class BaseActivity extends ActionBarActivity {
         };
         thread.start();
     }
-    protected Activity getActivity(){
+
+    protected Activity getActivity() {
         return this;
     }
-    protected void popLoginWnd(){
+
+    protected void popLoginWnd() {
         View loginWnd = getLayoutInflater().inflate(R.layout.window_login, null);
-        EditText etUsername = (EditText) loginWnd.findViewById(R.id.et_username);
-        EditText etPasswd = (EditText) loginWnd.findViewById(R.id.et_passwd);
+        final EditText etUsername = (EditText) loginWnd.findViewById(R.id.et_username);
+        final EditText etPasswd = (EditText) loginWnd.findViewById(R.id.et_passwd);
         new AlertDialog.Builder(this).setView(loginWnd).setTitle("登录").setPositiveButton("登录", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                showToast("登录成功");
+                try {
+                    String username = etUsername.getText().toString();
+                    String passwd = etPasswd.getText().toString();
+                    AjaxParams params = new AjaxParams();
+                    params.put("username", username);
+                    params.put("passwd", passwd);
+                    JSONObject obj = new JSONObject(getHttp().getSync("http://www.chushitong.com/login", params).toString());
+                    if (obj.getBoolean("result")) {
+                        showToast("登录成功");
+                        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putString("username", username).putString("passwd", passwd).commit();
+                        jumpToActivity(FoodListActivity.class);
+                    } else {
+                        showToast("登录失败，请重新输入");
+                    }
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
             }
-        }).setNegativeButton("注册", new DialogInterface.OnClickListener() {
+        }).
+                setNegativeButton("注册", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 View registerWnd = getLayoutInflater().inflate(R.layout.window_register, null);
 
-                Spinner spGender = (Spinner)registerWnd.findViewById(R.id.sp_gender);
+                Spinner spGender = (Spinner) registerWnd.findViewById(R.id.sp_gender);
                 ArrayAdapter<CharSequence> genderAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.gender, android.R.layout.simple_spinner_item);
                 spGender.setAdapter(genderAdapter);
 
-                Spinner spCity = (Spinner)registerWnd.findViewById(R.id.sp_city);
-                ArrayAdapter<CharSequence> cityAdapter = ArrayAdapter.createFromResource(getActivity(),R.array.city,android.R.layout.simple_spinner_item);
+                Spinner spCity = (Spinner) registerWnd.findViewById(R.id.sp_city);
+                ArrayAdapter<CharSequence> cityAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.city, android.R.layout.simple_spinner_item);
                 spCity.setAdapter(cityAdapter);
 
-                DatePicker dpBorn = (DatePicker)registerWnd.findViewById(R.id.dp_date);
-                final TextView tvBorn = (TextView)registerWnd.findViewById(R.id.tv_date);
+                DatePicker dpBorn = (DatePicker) registerWnd.findViewById(R.id.dp_date);
+                final TextView tvBorn = (TextView) registerWnd.findViewById(R.id.tv_date);
                 tvBorn.setText("1990/01/01");
                 dpBorn.init(1990, 0, 1, new DatePicker.OnDateChangedListener() {
                     @Override
                     public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        tvBorn.setText(year+"/"+(1+monthOfYear)+"/"+dayOfMonth);
+                        tvBorn.setText(year + "/" + (1 + monthOfYear) + "/" + dayOfMonth);
                     }
                 });
 
