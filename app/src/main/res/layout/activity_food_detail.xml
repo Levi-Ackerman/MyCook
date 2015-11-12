@@ -67,7 +67,7 @@
                         android:id="@+id/cb_favorite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="收藏" />
+                        android:text="喜欢" />
 
                     <CheckBox
                         android:id="@+id/cb_up"
