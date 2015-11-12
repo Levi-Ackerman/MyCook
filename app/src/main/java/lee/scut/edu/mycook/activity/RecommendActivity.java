@@ -34,6 +34,7 @@ public class RecommendActivity extends BaseActivity implements View.OnClickListe
     ListView lvRecommend, lvILike;
     ImageView ivBigRecmd;
     private List<Map<String, Object>> data;
+    int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +100,17 @@ public class RecommendActivity extends BaseActivity implements View.OnClickListe
             case R.id.btnPersonal:
                 jumpToActivity(PersonalActivity.class);
                 break;
+            case R.id.btnDislike:
+                offlineData.foodLists.recommendFood.remove(this.position);
+                adapterRecommend.notifyDataSetChanged();
+                if (!offlineData.foodLists.recommendFood.isEmpty()) {
+                    lvRecommend.performItemClick(null, 0, lvRecommend.getItemIdAtPosition(0));
+                }
+                break;
+            case R.id.btnLike:
+                setLikedButtons(true);
+                offlineData.getFoodById((int) adapterRecommend.getItemId(position)).isFavorite = true;
+                break;
         }
     }
 
@@ -112,6 +124,7 @@ public class RecommendActivity extends BaseActivity implements View.OnClickListe
             Food food = offlineData.getFoodById((int) id);
             ivBigRecmd.setImageBitmap(BitmapFactory.decodeFile(food.picUrl));
             setLikedButtons(food.isFavorite);
+            this.position = position;
         }
     }
 
