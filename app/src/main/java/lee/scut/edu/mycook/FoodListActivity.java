@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lee.scut.edu.mycook.entity.FoodDetails.Food;
 import lee.scut.edu.mycook.entity.FoodLists.FoodListItem;
 import lee.scut.edu.mycook.entity.FoodLists.FoodLists;
 import lee.scut.edu.mycook.entity.FoodLists.FoodRecommend;
@@ -69,7 +70,6 @@ public class FoodListActivity extends BaseActivity implements View.OnClickListen
                 tvFoodNames[i][j].setText(foodRecommendLists[i].get(j).name);
             }
         }
-        initFoodList();
         setListViewAdapter(null);
     }
 
@@ -127,28 +127,22 @@ public class FoodListActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        FoodDetailActivity.foodId = foodLists.allFoods.get(position).id;
+        FoodDetailActivity.foodId = (int)data.get(position).get("id");
         jumpToActivity(FoodDetailActivity.class);
     }
 
-    List<String> allFoods = new ArrayList<>();
     ListAdapter adapter;
 
-    private void initFoodList() {
-        allFoods.clear();
-        for (FoodListItem food : foodLists.allFoods) {
-            allFoods.add(food.name);
-        }
-    }
 
     List<Map<String, Object>> data;
 
     private void setListViewAdapter(String searchContent) {
         data = new ArrayList<Map<String, Object>>();
-        for (String foodName : allFoods) {
-            if (searchContent == null || foodName.contains(searchContent)) {
+        for (FoodListItem food : foodLists.allFoods) {
+            if (searchContent == null || food.name.contains(searchContent)) {
                 Map<String, Object> map = new HashMap<String, Object>();
-                map.put("fileName", foodName);
+                map.put("fileName", food.name);
+                map.put("id",food.id);
                 data.add(map);
             }
         }
