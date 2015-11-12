@@ -3,6 +3,9 @@ package lee.scut.edu.mycook;
 import android.os.Bundle;
 import android.view.View;
 
+import lee.scut.edu.mycook.activity.BaseActivity;
+import lee.scut.edu.mycook.activity.PlayerActivity;
+
 /**
  * Created by jsonlee on 10/8/15.
  */

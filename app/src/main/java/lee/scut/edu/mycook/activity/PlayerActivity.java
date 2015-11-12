@@ -1,4 +1,4 @@
-package lee.scut.edu.mycook;
+package lee.scut.edu.mycook.activity;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import lee.scut.edu.mycook.PlayerService;
+import lee.scut.edu.mycook.R;
 
 /**
  * Created by jsonlee on 10/1/15.

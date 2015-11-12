@@ -1,4 +1,4 @@
-package lee.scut.edu.mycook;
+package lee.scut.edu.mycook.activity;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -16,19 +16,16 @@ import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lee.scut.edu.mycook.R;
 import lee.scut.edu.mycook.entity.FoodDetails.Food;
 import lee.scut.edu.mycook.entity.FoodDetails.FoodComent;
 import lee.scut.edu.mycook.entity.FoodDetails.FoodMaterial;
 import lee.scut.edu.mycook.entity.FoodDetails.FoodStep;
-import lee.scut.edu.mycook.entity.OfflineData;
 import lee.scut.edu.mycook.view.ResizeListView;
 
 public class FoodDetailActivity extends BaseActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener, CompoundButton.OnCheckedChangeListener {

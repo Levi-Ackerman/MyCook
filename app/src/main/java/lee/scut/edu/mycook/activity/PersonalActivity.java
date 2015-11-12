@@ -1,12 +1,8 @@
-package lee.scut.edu.mycook;
+package lee.scut.edu.mycook.activity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -15,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lee.scut.edu.mycook.R;
 import lee.scut.edu.mycook.view.HorizonalListView;
 
 /**

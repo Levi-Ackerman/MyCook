@@ -1,4 +1,4 @@
-package lee.scut.edu.mycook;
+package lee.scut.edu.mycook.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -6,7 +6,6 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -18,20 +17,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.reflect.TypeToken;
 
 import net.tsz.afinal.FinalBitmap;
 import net.tsz.afinal.FinalHttp;
-import net.tsz.afinal.http.AjaxCallBack;
 import net.tsz.afinal.http.AjaxParams;
 
 import org.json.JSONObject;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
-
+import lee.scut.edu.mycook.OnJsonReturnListener;
+import lee.scut.edu.mycook.R;
+import lee.scut.edu.mycook.activity.FoodListActivity;
 import lee.scut.edu.mycook.entity.OfflineData;
 
 /**

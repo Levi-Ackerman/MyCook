@@ -8,6 +8,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
+import lee.scut.edu.mycook.activity.BaseActivity;
+import lee.scut.edu.mycook.activity.FoodListActivity;
+import lee.scut.edu.mycook.activity.PersonalActivity;
+import lee.scut.edu.mycook.activity.PlayerActivity;
+
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     ImageButton ibPlayer;
 

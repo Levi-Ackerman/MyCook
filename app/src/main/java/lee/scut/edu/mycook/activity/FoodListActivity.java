@@ -1,6 +1,5 @@
-package lee.scut.edu.mycook;
+package lee.scut.edu.mycook.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,15 +13,12 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import lee.scut.edu.mycook.entity.FoodDetails.Food;
+import lee.scut.edu.mycook.R;
 import lee.scut.edu.mycook.entity.FoodLists.FoodListItem;
 import lee.scut.edu.mycook.entity.FoodLists.FoodLists;
 import lee.scut.edu.mycook.entity.FoodLists.FoodRecommend;
