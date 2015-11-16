@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:textSize="@dimen/abc_text_size_title_material_toolbar"
+        android:textSize="@dimen/text_size_text_title2"
         android:textColor="@android:color/black"
         android:text="猜你喜欢" />
 

@@ -6,6 +6,7 @@
         android:layout_margin="10dp"
         android:id="@+id/tv_item"
         android:text="哈哈"
+        android:textSize="@dimen/text_size_text_title2"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

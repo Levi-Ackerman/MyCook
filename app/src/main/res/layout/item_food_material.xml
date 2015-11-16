@@ -9,6 +9,7 @@
         android:id="@+id/material_name"
         android:text="猪肉"
         android:layout_gravity="center"
+        android:textSize="@dimen/text_size_text_title2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1" />
@@ -16,6 +17,7 @@
     <TextView
         android:id="@+id/material_weight"
         android:text="100g"
+        android:textSize="@dimen/text_size_text_title2"
         android:layout_gravity="center"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

@@ -54,6 +54,7 @@
                     android:id="@+id/tv_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_text_title2"
                     android:inputType="textMultiLine"
                     android:text="白切鸡是一道色香味俱全的汉族传统名肴，属于粤菜系鸡肴中最普通的一种，是正宗的客家特有菜肴，属浸鸡类，以其制作简易，刚熟不烂，不加配料且保持原味为特点。" />
 
@@ -65,12 +66,14 @@
 
                     <CheckBox
                         android:id="@+id/cb_favorite"
+                        android:textSize="@dimen/text_size_text_title2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="喜欢" />
 
                     <CheckBox
                         android:id="@+id/cb_up"
+                        android:textSize="@dimen/text_size_text_title2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="点赞" />
@@ -118,6 +121,7 @@
 
             <Spinner
                 android:id="@+id/sp_grade"
+                android:textSize="@dimen/text_size_text_title2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -125,6 +129,7 @@
 
             <CheckBox
                 android:id="@+id/cb_done"
+                android:textSize="@dimen/text_size_text_title2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/sp_grade"
